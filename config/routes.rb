@@ -17,21 +17,21 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
 
 namespace :admin do
     get 'homes/top'
+    
     #いいね機能、コメント機能
     resources :posts, only: [:index, :new, :show, :edit, :update] do
      resource :favorites
      resources :post_comments, only: [:create, :destroy]
     end
     
+    #フォロー機能、フォロワー機能
     resources :customers, only: [:show, :edit, :update] do
      resource :relationships
      get 'followings' => 'relationships#followings', as: 'followings'
      get 'followers' => 'relationships#followers', as: 'followers'
     end
-  
-    resources :order_details, only: [:update]
     resources :sessions, only: [:new, :create, :destroy]
-    get 'searches/searches'
+    get 'searches/searches', as: 'search'
   end
 
   scope module: :public do
