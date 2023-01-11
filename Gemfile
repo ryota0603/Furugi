@@ -63,3 +63,9 @@ end
 gem "net-smtp"
 gem "net-pop"
 gem "net-imap"
+#デバイス入れることで、ログイン、登録機能等実装できる。
+gem 'devise'
+#enum_helpは退会機能のステータス変更の最適化で入れます。
+gem 'enum_help'
+#kaminariはページネーションを入れるため。
+gem 'kaminari','~> 1.2.1'
