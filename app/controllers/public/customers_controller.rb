@@ -1,49 +1,46 @@
 class Public::CustomersController < ApplicationController
-  before_action :is_matching_login_customer, only: [:edit, :update]
-before_action :correct_customer, only: [:edit, :update]
-  def index
-    @customers = Customer.all
-    @book = Book.new
-    @user = current_user
-  end
-  
+  before_action :authenticate_customer!
+  before_action :ensure_correct_customer,except: [:unsubscribe, :withdrawal]
   def show
-    @user = User.find(params[:id])
-    @books = @user.books
-    @book = Book.new
+    @customer = Customer.find(params[:id])
   end
-
   def edit
-  
-    @user = User.find(params[:id])
+    @customer = Customer.find(params[:id])
   end
-  
+ 
   def update
-
-    @user = User.find(params[:id])
-    if @user.update(user_params)
-    flash[:notice] = "You have updated user successfully."  
-    redirect_to user_path(@user.id)
+    @customer = Customer.find(params[:id])
+    if @customer.update(customer_params)
+      flash[:success] = "You have edited user data successfully."
+      redirect_to customer_path(@customer)
     else
-     
-      render :edit
+      render 'edit'
     end
+    
+  end
+#退会確認画面の記述
+  def unsubscribe
+    @customer = current_customer
+  end
+#退会フラグを立てる記述
+  def withdrawal
+     @customer = current_customer
+       if @customer.update(is_deleted: true)
+          sign_out current_customer 
+       end
+       redirect_to root_path
   end
   
   private
 
   def customer_params
-    params.require(:customer).permit(:name, :profile_image,:introduction)
+   params.require(:customer).permit(:is_deleted, :email, :name, :introduction)
   end
-  def is_matching_login_customer
-    customer_id = params[:id].to_i
-    login_customer_id = current_customer.id
-    if(customer_id != login_customer_id)
-      redirect_to customer_path(current_customer.id)
-    end
-  end
-  def correct_customer
+  #ログインしているユーザーを判断する記述
+  def ensure_correct_customer
     @customer = Customer.find(params[:id])
-    redirect_to customer_path(current_customer.id) unless @customer == current_customer
+    unless @customer == current_customer
+      redirect_to customer_path(current_customer)
+    end
   end
 end
