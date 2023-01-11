@@ -3,6 +3,7 @@ class Public::CustomersController < ApplicationController
   before_action :ensure_correct_customer,except: [:unsubscribe, :withdrawal]
   def show
     @customer = Customer.find(params[:id])
+    @posts = @customer.posts
   end
   def edit
     @customer = Customer.find(params[:id])
@@ -34,7 +35,7 @@ class Public::CustomersController < ApplicationController
   private
 
   def customer_params
-   params.require(:customer).permit(:is_deleted, :email, :name, :introduction)
+   params.require(:customer).permit(:is_deleted, :email, :name, :introduction, :profile_image)
   end
   #ログインしているユーザーを判断する記述
   def ensure_correct_customer
