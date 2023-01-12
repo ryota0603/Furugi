@@ -2,7 +2,10 @@ class Public::PostsController < ApplicationController
   
   def new
     @post = Post.new
-    
+  end
+  
+  def create
+
   end
   
   def index
@@ -20,6 +23,10 @@ class Public::PostsController < ApplicationController
     
   end
   
+  def update
+  end
+  
+  
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
@@ -27,5 +34,9 @@ class Public::PostsController < ApplicationController
     
   end
 
+  private
+    def post_params
+      params.require(:post).permit(:image, :name, :shopname, :body)
+    end
 
 end

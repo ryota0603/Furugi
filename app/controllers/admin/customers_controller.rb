@@ -22,6 +22,12 @@ class Admin::CustomersController < ApplicationController
       render :edit
     end
   end
+  
+  def search
+    @customers = Customer.search(params[:keyword])
+    @keyword = params[:keyword]
+    render "index"
+  end
 
   private
 

@@ -36,7 +36,7 @@ namespace :admin do
      get 'followers' => 'relationships#followers', as: 'followers'
     end
     resources :sessions, only: [:new, :create, :destroy]
-    get 'searches/searches', as: 'search'
+     get 'search' => 'customers#search'
   end
 
   scope module: :public do
@@ -45,7 +45,7 @@ namespace :admin do
     get 'customers/unsubscribe'
     patch 'customers/withdrawal'
     #いいね機能、コメント機能
-    resources :posts, only: [:index, :new, :show, :edit, :update] do
+    resources :posts, only: [:index, :new, :show, :edit, :update, :create, :destroy] do
      resource :favorites
      resources :post_comments, only: [:create, :destroy]
     end
