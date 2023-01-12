@@ -15,6 +15,11 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   sessions: "admin/sessions"
 }
 
+# ゲストログイン
+  devise_scope :user do
+    post 'users/guest_sign_in', to: 'users/sessions#guest_sign_in'
+  end
+
 namespace :admin do
     get 'homes/top'
     
@@ -25,7 +30,7 @@ namespace :admin do
     end
     
     #フォロー機能、フォロワー機能
-    resources :customers, only: [:show, :edit, :update] do
+    resources :customers, only: [:index, :show, :edit, :update] do
      resource :relationships
      get 'followings' => 'relationships#followings', as: 'followings'
      get 'followers' => 'relationships#followers', as: 'followers'

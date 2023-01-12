@@ -1,0 +1,60 @@
+<div class="offset-1">
+	<div class="ml-5">
+	  <div class="ml-5">
+	    <mark class="h4 bg-light ml-5 mb-5 px-4"><%= @customer.name %>さんの会員詳細</mark>
+	  </div>
+	</div>
+</div>
+<div class='container'>
+  <div class='row mt-4 ml-4'>
+    <div class="col-md-12 ml-3">
+      <table class='table table-borderless'>
+        <tbody>
+          <tr>
+            <td style="width: 20%">会員ID</td>
+            <td><%= @customer.id %></td>
+          </tr>
+          <tr><%= image_tag @customer.get_profile_image, size:'100x100' %></tr>
+          <tr>
+            <td style="width: 20%">name</td>
+            <td><%= @customer.name %></td>
+          </tr>
+          <tr>
+            <td style="width: 20%">introduction</td>
+            <td><%= @customer.introduction %></td>
+          </tr>
+          <tr>
+            <td style="width: 20%">メールアドレス</td>
+            <td><%= @customer.email %></td>
+          </tr>
+          <tr>
+          <tr>
+            <th>follows</th>
+            <th>
+              <%= link_to  @customer.followings.count,admin_customer_followings_path(@customer) %>　
+            </th>
+          </tr>
+          <tr>
+            <th>followers</th>
+            <th>
+              <%= link_to  @customer.followers.count,admin_customer_followers_path(@customer) %>
+            </th>
+          </tr>
+            <td style="width: 20%">会員ステータス</td>
+            <% if @customer.is_deleted == false %>
+              <td class='text-success'>有効</td>
+            <% else %>
+              <td class='text-secoundary'>退会</td>
+            <% end %>
+          </tr>
+          <tr>
+            <td></td>
+            <td style="width: 20%"><%= link_to "編集する", edit_admin_customer_path(@customer), class: "btn btn-success" %></td>
+          </tr>
+        </tbody>
+      </table>
+      <div>
+    </div>
+    </div>
+  </div>
+</div>

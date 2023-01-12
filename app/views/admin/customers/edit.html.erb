@@ -1,0 +1,49 @@
+<div class="offset-1">
+	<div class="ml-5">
+	  <div class="ml-5">
+	    <mark class="h4 bg-light ml-5 mb-5 px-4"><%= @customer.name %>さんの会員情報編集</mark>
+	  </div>
+	</div>
+</div>
+<div class='container'>
+  <div class='row mt-4 ml-4'>
+    <%= form_with model:@customer,url: admin_customer_path, local:true do |f| %>
+    <div class="col-md-12 ml-3">
+      <table class='table table-borderless'>
+        <tbody>
+          <tr>
+            <td style="width: 30%"><%= f.label :id, "会員ID" %></td>
+            <td><%= @customer.id %></td>
+          </tr>
+          <tr><%= image_tag @customer.get_profile_image, size:'100x100' %></tr>
+          <tr>
+            <td style="width: 30%"><%= f.label :full_name, "name" %></td>
+            <td><%= f.text_field :name, class: "form-control name" %></td>
+          </tr>
+          <tr>
+            <td style="width: 30%"><%= f.label :introduction, "introduction" %></td>
+            <td><%= f.text_area :introduction, class: "form-control introduction" %></td>
+          </tr>
+          <tr>
+            <td style="width: 30%"><%= f.label :email, "メールアドレス" %></td>
+            <td><%= f.email_field :email, size: "20", class: "form-control email" %></td>
+            <td style="width: 35%"></td>
+          </tr>
+          <tr>
+            <td style="width: 30%">会員ステータス</td>
+            <td>
+              <%= f.radio_button :is_deleted, :false %><%= f.label :customer_status_false, "有効" %>&emsp;
+              <%= f.radio_button :is_deleted, :true %><%= f.label :customer_status_true, "退会" %>
+            </td>
+          </tr>
+          <tr></tr>
+          <tr>
+            <td></td>
+            <td><%= f.submit "変更を保存", class: 'btn btn-success' %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <% end %>
+  </div>
+</div>
