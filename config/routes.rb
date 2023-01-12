@@ -36,10 +36,9 @@ namespace :admin do
 
   scope module: :public do
     get 'homes/top'
-    get 'homes/about'
+    get 'homes/about', as: 'about'
     get 'customers/unsubscribe'
     patch 'customers/withdrawal'
-    get 'orders/about'
     #いいね機能、コメント機能
     resources :posts, only: [:index, :new, :show, :edit, :update] do
      resource :favorites

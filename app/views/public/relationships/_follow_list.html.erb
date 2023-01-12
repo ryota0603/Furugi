@@ -1,0 +1,26 @@
+<% if @customers.exists? %>
+  <% @customers.each do |customer| %>
+    <table class='table'>
+      <thead>
+        <tr>
+          <th>image</th>
+        </tr>
+        <tr>
+          <th>name</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><%= image_tag customer.get_profile_image, size:'100x100' %></td>
+          <td><%= customer.name %></td>
+          <td>フォロー数: <%= customer.followings.count %></td>
+          <td>フォロワー数: <%= customer.followers.count %></td>
+        </tr>
+      </tbody>
+    </table>
+  <% end %>
+<% else %>
+  <p>ユーザーはいません</p>
+<% end %>
