@@ -1,0 +1,46 @@
+<div class='container'>
+  <div class='row'>
+    <div class='col-md-3'>
+      <h2>User info</h2>
+      <%= render 'customers/info', user: @item.customer %>
+      
+    </div>
+    <div class='col-md-8 offset-md-1'>
+  		<h2>投稿詳細</h2>
+  		<table class='table'>
+  		  <tr>
+          <td><%= link_to(@item.customer) do %>
+            <%= image_tag @item.customer.get_profile_image, size:"100x100" %><br>
+            <%= @item.customer.name %>
+            <% end %>
+          </td>
+          <td><%= link_to @item.name, @item %></td>
+          <td><%= @item.body %></td>
+          <% if @item.customer == current_customer %>
+            <td><%= link_to 'Edit', edit_item_path(@item), class: "btn btn-sm btn-success" %></td>
+            <td><%= link_to 'Destroy', @item, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%></td>
+          <% end %>
+        </tr>
+      </table>
+      <div class='col-md-8 offset-md-1'>
+         <table class='table'>
+             <thead>
+              <tr>
+                <th>コメント</th>
+              </tr>
+              </thead>
+              <tbody id="comments_area">
+               <%= render 'post_comments/post_comments',post_comments: @post_comments %>
+      		    </tbody>
+      		</table>
+      		<div class="new-comment">
+        		<%= render 'post_comments/form', item: @item, post_comment: @post_comment %>
+        	</div>
+          <div class ="comment">
+            <%= render 'post_comments/comment', item: @item  %>
+          </div>
+        　
+      </div>
+    </div>
+  </div>
+</div>

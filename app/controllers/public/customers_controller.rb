@@ -3,8 +3,8 @@ class Public::CustomersController < ApplicationController
   before_action :ensure_correct_customer,except: [:unsubscribe, :withdrawal]
   def show
     @customer = Customer.find(params[:id])
-    @posts = @customer.posts
-    @posts = Post.all
+    @items = @customer.items
+    @items = Item.all
   end
   def edit
     @customer = Customer.find(params[:id])

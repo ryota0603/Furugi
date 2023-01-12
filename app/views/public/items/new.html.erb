@@ -2,7 +2,7 @@
   <div class="row "><h4 class="col-md-2 col-sm-2 bg-light ">新規投稿</h4></div>
     <div class="row ">
       <div class="col-12">
-        <%= form_with model: @post, local: true do |f| %>
+        <%= form_with model: @item, local: true do |f| %>
           <div class="form-group  row mt-5 mb-4" >
             <%= f.label :画像 ,class:"col-md-2 text-center" %>
             <%= f.file_field :image, accept:"image/*" %> <!--accept: "image/*"は画像ファイルのみ投稿可能-->

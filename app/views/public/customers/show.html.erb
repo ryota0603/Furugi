@@ -4,7 +4,7 @@
       <h2>My page</h2>
       <%= render 'info', customer: @customer %>
       <h2 class="mt-3">New posts</h2>
-     <div>><%= link_to " 投稿しに行く", new_post_path, class: 'text-dark align-middle' %></div>
+     <div>><%= link_to " 投稿しに行く", new_item_path, class: 'text-dark align-middle' %></div>
     </div>
     <div class='col-md-8 offset-md-1'>
       <h2>投稿一覧</h2>
@@ -18,20 +18,20 @@
           </tr>
         </thead>
         <tbody>
-          <% @posts.each do |post| %>
+          <% @items.each do |item| %>
             <tr>
-              <td><%= link_to(post.customer) do %>
-                <%= image_tag post.customer.get_profile_image, size:'50x50' %>
+              <td><%= link_to(item.customer) do %>
+                <%= image_tag item.customer.get_profile_image, size:'50x50' %>
                 <% end %>
               </td>
-              <td><%= link_to post.title,post %></td>
-              <td><%= post.body %></td>
+              <td><%= link_to item.title,item %></td>
+              <td><%= item.body %></td>
               <!--部分テンプレートにした箇所(部分的に更新したい箇所)-->
-          　　<td id="favorite_buttons_<%= post.id %>">
-          　　　<%= render "favorites/favorites", post: @post %>
+          　　<td id="favorite_buttons_<%= item.id %>">
+          　　　<%= render "favorites/favorites", item: @item %>
           　　</td>
               <td>
-                 <p>コメント件数：<%= post.post_comments.count %></p>
+                 <p>コメント件数：<%= item.post_comments.count %></p>
               </td>
             </tr>
           <% end %>

@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="row">
+    <h2>投稿一覧<span class="small">(全 <%= @items.count %> 件)</span></h2>
+  </div>
+    <div class="row p-auto">
+      <% @items.each do |item| %>
+        <%= link_to item_path(item.id) do %>
+          <div class=" mx-5">
+            <%= image_tag item.image, size: '150x100' %>
+            <p class="text-dark"><%=item.name %></p>
+            <p class="text-dark"><%= item.body %></p>
+            <p>コメント件数：<%= item.post_comments.count %></p>
+          </div>
+        <% end %>
+      <% end %>
+   </div>
+   <div class="mt-4 d-flex justify-content-center">
+     <%= paginate @items %>
+   </div>
+ </div>
+ <!--部分テンプレートにした箇所(部分的に更新したい箇所)-->
+    　　<!--<td id="favorite_buttons_<%#= item.id %>">-->
+    　　<%#= render "favorites/favorites" item: @item %>
+
+
