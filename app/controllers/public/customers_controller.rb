@@ -5,7 +5,6 @@ class Public::CustomersController < ApplicationController
   def show
     @customer = Customer.find(params[:id])
     @items = @customer.items
-    @items = Item.all
   end
   def edit
     @customer = Customer.find(params[:id])
