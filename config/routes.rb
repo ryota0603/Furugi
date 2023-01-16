@@ -22,6 +22,7 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
 
 namespace :admin do
     get 'homes/top'
+    resources :maps, only: [:index]
     
     #いいね機能、コメント機能
     resources :items, only: [:index, :new, :show, :edit, :update] do
@@ -44,6 +45,7 @@ namespace :admin do
     get 'homes/about', as: 'about'
     get 'customers/unsubscribe'
     patch 'customers/withdrawal'
+    resources :maps, only: [:index]
     #いいね機能、コメント機能
     resources :items, only: [:index, :new, :show, :edit, :update, :create, :destroy] do
      resource :favorites
@@ -62,5 +64,6 @@ namespace :admin do
     
     
   end
+
 
 end

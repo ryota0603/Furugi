@@ -69,3 +69,6 @@ gem 'devise'
 gem 'enum_help'
 #kaminariはページネーションを入れるため。
 gem 'kaminari','~> 1.2.1'
+#マップ機能実装
+gem 'gon'
+gem 'geocoder'

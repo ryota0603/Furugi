@@ -9,6 +9,9 @@ class Item < ApplicationRecord
   validates :name,presence:true
   validates :body,presence:true,length:{maximum:200}
   
+  geocoded_by :address
+  after_validation :geocode
+  
   # イイね機能の記述
   def favorited_by?(customer)
     favorites.exists?(customer_id: customer.id)

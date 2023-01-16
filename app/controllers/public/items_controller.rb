@@ -5,22 +5,28 @@ class Public::ItemsController < ApplicationController
   
   def create
     @item = Item.new(item_params)
+    @item.customer_id = current_customer.id
     
-    @item.save
-    
-    redirect_to items_path(@item), notice: "You have created book successfully."
+   if @item.save
+     redirect_to items_path(@item), notice: "You have created book successfully."
+   else 
+     render 'new'
+   end
+   
 
   end
   
   def index
+    
     @items = Item.page(params[:page]).per(8)
   
   end
   
-  # def show
-  #   @post = Post.find(params{:id})
+  def show
+    @item = Item.find(params[:id])
+    gon.item = @item # 追記
     
-  # end
+  end
   
   # def edit 
   #   @post = Post.find(params{:id})
@@ -41,7 +47,7 @@ class Public::ItemsController < ApplicationController
   private
   
   def item_params
-      params.require(:item).permit(:image, :name, :shopname, :body)
+      params.require(:item).permit(:image, :name, :shopname, :body, :address)
   end
 
 end

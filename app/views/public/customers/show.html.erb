@@ -24,14 +24,14 @@
                 <%= image_tag item.customer.get_profile_image, size:'50x50' %>
                 <% end %>
               </td>
-              <td><%= link_to item.title,item %></td>
+              <td><%= link_to item.name,item %></td>
               <td><%= item.body %></td>
-              <!--部分テンプレートにした箇所(部分的に更新したい箇所)-->
+              部分テンプレートにした箇所(部分的に更新したい箇所)
           　　<td id="favorite_buttons_<%= item.id %>">
-          　　　<%= render "favorites/favorites", item: @item %>
+          　　　<%= render "public/favorites/favorites", item: @item %>
           　　</td>
               <td>
-                 <p>コメント件数：<%= item.post_comments.count %></p>
+                 <!--<p>コメント件数：<#%= item.post_comments.count %></p>-->
               </td>
             </tr>
           <% end %>
