@@ -17,15 +17,16 @@ class Public::ItemsController < ApplicationController
   end
   
   def index
-    
     @items = Item.page(params[:page]).per(8)
-  
+    @customer = current_customer
+    @post_comment = PostComment.all
   end
   
   def show
     @item = Item.find(params[:id])
     gon.item = @item # 追記
-    
+    @customer = current_customer
+    @post_comment = PostComment.all
   end
   
   # def edit 

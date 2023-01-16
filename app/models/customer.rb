@@ -50,4 +50,11 @@ class Customer < ApplicationRecord
       Customer.where('name LIKE ?', '%' + content + '%')
     end
   end
+  #ゲストログインの記述
+  def self.guest
+    find_or_create_by!(name: 'guestuser' ,email: 'guest@example.com') do |customer|
+      customer.password = SecureRandom.urlsafe_base64
+      customer.name = "guestuser"
+    end
+  end
 end

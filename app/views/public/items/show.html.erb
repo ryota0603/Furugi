@@ -24,20 +24,20 @@
       </table>
       <div class='col-md-8 offset-md-1'>
          <table class='table'>
-             <!--<thead>-->
-             <!-- <tr>-->
-             <!--   <th>コメント</th>-->
-             <!-- </tr>-->
-             <!-- </thead>-->
-        <!--      <tbody id="comments_area">-->
-        <!--       <#%= render 'public/post_comments/post_comments',item_comments: @item_comments %>-->
-      		<!--    </tbody>-->
-      		<!--</table>-->
-      		<!--<div class="new-comment">-->
-        <!--		<#%= render 'public/post_comments/form', item: @item, post_comment: @item_comment %>-->
-        <!--	</div>-->
-        <!--  <div class ="comment">-->
-        <!--    <#%= render 'public/post_comments/comment', item: @item  %>-->
+             <thead>
+              <tr>
+                <th>コメント</th>
+              </tr>
+              </thead>
+              <tbody id="comments_area">
+               <%= render 'public/post_comments/post_comments',post_comments: @post_comments %>
+      		    </tbody>
+      		</table>
+      		<div class="new-comment">
+        		<%= render 'public/post_comments/form', item: @item, post_comment: @post_comment %>
+        	</div>
+          <div class ="comment">
+            <%= render 'public/post_comments/comment', item: @item  %>
           </div>
         　
       </div>
