@@ -3,15 +3,44 @@
     <div class='col-md-3'>
       <h2>User info</h2>
       <%= render 'public/customers/info', customer: @item.customer %>
+      <!--<div id ="map"></div>-->
+      <!--<style>#map {height: 400px; width: 400px;}</style>-->
+      <!--<script>-->
+      <!--  let map;-->
+      <!--  function initMap() {-->
+      <!--    geocoder = new google.maps.Geocoder()-->
+      <!--console.log("gon:"+gon)-->
+      <!--    map = new google.maps.Map(document.getElementById('map'), {-->
+            <!--// コントローラーで定義した変数から緯度経度を呼び出し、マップの中心に表示-->
+      <!--      center: {-->
+      <!--        lat: gon.item.latitude,-->
+      <!--        lng: gon.item.longitude-->
+      <!--      },-->
+      <!--      zoom: 12,-->
+      <!--    });-->
       
+      <!--    marker = new google.maps.Marker({-->
+            <!--// コントローラーで定義した変数から緯度経度を呼び出し、マーカーを立てる-->
+      <!--      position: {-->
+      <!--        lat: gon.item.latitude,-->
+      <!--        lng: gon.item.longitude-->
+      <!--      },-->
+      <!--      map: map-->
+      <!--    });-->
+      <!--  }-->
+      <!--</script>-->
+      
+      <!--<script async defer-->
+      <!--  src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<#%= ENV['GOOGLE_MAP_API'] %>&callback=initMap">-->
+      <!--</script>-->
     </div>
     <div class='col-md-8 offset-md-1'>
   		<h2>投稿詳細</h2>
   		<table class='table'>
   		  <tr>
-          <td><%= link_to(@item.customer) do %>
-            <%= image_tag @item.customer.get_profile_image, size:"100x100" %><br>
-            <%= @item.customer.name %>
+          <td>
+            <%= link_to(@item.customer) do %>
+             <%= image_tag @item.customer.get_profile_image, size:"100x100" %><br>
             <% end %>
           </td>
           <td><%= link_to @item.name, @item %></td>
@@ -20,6 +49,9 @@
             <td><%= link_to 'Edit', edit_item_path(@item), class: "btn btn-sm btn-success" %></td>
             <td><%= link_to 'Destroy', @item, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%></td>
           <% end %>
+          <td id="favorite_buttons_<%= @item.id %>">
+            <%= render "public/favorites/favorites", item: @item %>
+          </td>
         </tr>
       </table>
       <div class='col-md-8 offset-md-1'>
@@ -41,36 +73,7 @@
           </div>
         　
       </div>
-      <div id ="map"></div>
-      <style>#map {height: 500px; width: 500px;}</style>
-      <script>
-        let map;
-        function initMap() {
-          geocoder = new google.maps.Geocoder()
       
-          map = new google.maps.Map(document.getElementById('map'), {
-            // コントローラーで定義した変数から緯度経度を呼び出し、マップの中心に表示
-            center: {
-              lat: gon.item.latitude,
-              lng: gon.item.longitude
-            },
-            zoom: 12,
-          });
-      
-          marker = new google.maps.Marker({
-            // コントローラーで定義した変数から緯度経度を呼び出し、マーカーを立てる
-            position: {
-              lat: gon.item.latitude,
-              lng: gon.item.longitude
-            },
-            map: map
-          });
-        }
-      </script>
-      
-      <script async defer
-        src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%= ENV['GOOGLE_MAP_API'] %>&callback=initMap">
-      </script>
 - 
 
 

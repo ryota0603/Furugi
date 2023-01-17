@@ -8,6 +8,10 @@ class Item < ApplicationRecord
   has_many :week_favorites, -> { where(created_at: ((Time.current.at_end_of_day - 6.day).at_beginning_of_day)..(Time.current.at_end_of_day)) }, class_name: 'Favorite'
   validates :name,presence:true
   validates :body,presence:true,length:{maximum:200}
+  validates :image, presence: true
+  validates :shopname, presence: true
+  validates :address, presence: true
+  
   
   geocoded_by :address
   after_validation :geocode
@@ -19,13 +23,13 @@ class Item < ApplicationRecord
   # 検索機能の記述　条件分岐、大元はコントローラーに記述
   def self.search_for(content, method)
     if method == 'perfect'
-      Book.where(title: content)
+      Item.where(name: content)
     elsif method == 'forward'
-      Book.where('title LIKE ?', content+'%')
+      Item.where('name LIKE ?', content+'%')
     elsif method == 'backward'
-      Book.where('title LIKE ?', '%'+content)
+      Item.where('name LIKE ?', '%'+content)
     else
-      Book.where('title LIKE ?', '%'+content+'%')
+      Item.where('name LIKE ?', '%'+content+'%')
     end
   end
 end

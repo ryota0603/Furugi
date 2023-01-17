@@ -14,7 +14,7 @@
           </li>
           <li button type="botton" class="m-3 btn btn-outline-secondary"><%= link_to " About", about_path, class: 'text-dark align-middle' %></li>
           <li button type="botton" class="m-3 btn btn-outline-secondary"><%= link_to " マイページ", customer_path(current_customer), class: 'text-dark align-middle' %></li>
-          <li button type="botton" class="m-3 btn btn-outline-secondary"><%= link_to " 投稿検索", searches_path, class: 'text-dark align-middle' %></li>
+          <li button type="botton" class="m-3 btn btn-outline-secondary"><%= link_to " 投稿検索", search_path, class: 'text-dark align-middle' %></li>
           <li button type="botton" class="m-3 btn btn-outline-secondary"><%= link_to " 投稿一覧", items_path, class: 'text-dark align-middle' %></li>
           <li button type="botton" class="m-3 btn btn-outline-secondary"><%= link_to " ログアウト", destroy_customer_session_path, method: :delete, class: 'text-dark align-middle' %></li>
         <% elsif admin_signed_in? %>
@@ -24,7 +24,7 @@
           <li button type="botton" class="m-3 btn btn-outline-secondary"><%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'text-dark align-middle' %></li>
         <% else %>
           <li button type="botton" class="m-3 btn btn-outline-secondary"><%= link_to " About", about_path, class: 'text-dark align-middle' %></li>
-          <li button type="botton" class="m-3 btn btn-outline-secondary"><%= link_to " 投稿検索", searches_path, class: 'text-dark align-middle' %></li>
+          <li button type="botton" class="m-3 btn btn-outline-secondary"><%= link_to " 投稿検索", search_path, class: 'text-dark align-middle' %></li>
           <li button type="botton" class="m-3 btn btn-outline-secondary"><%= link_to " 投稿一覧", new_customer_registration_path, class: 'text-dark align-middle' %></li>
           <li button type="botton" class="m-3 btn btn-outline-secondary"><%= link_to " ログイン", new_customer_session_path, class: 'text-dark align-middle' %></li>
         <% end %>

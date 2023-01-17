@@ -1,0 +1,6 @@
+<% post_comments.each do |comment| %>
+  <tr>
+    <td><%= comment.comment %></td>
+    <td><%= link_to 'Destroy',item_post_comment_path(comment.post,comment),  method: :delete, remote: true, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%></td>
+  </tr>
+<% end %>

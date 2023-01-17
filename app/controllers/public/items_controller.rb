@@ -26,24 +26,33 @@ class Public::ItemsController < ApplicationController
     @item = Item.find(params[:id])
     gon.item = @item # 追記
     @customer = current_customer
-    @post_comment = PostComment.all
+    @post_comment = PostComment.new
+    @post_comments = PostComment.all
+    #redirect_to item_path(@item.id)
   end
   
-  # def edit 
-  #   @post = Post.find(params{:id})
+  def edit 
+    @item = Item.find(params[:id])
     
-  # end
+  end
   
-  # def update
-  # end
+  def update
+    @item = Item.find(params[:id])
+    if @item.update(item_params)
+       flash[:notice] = "商品を変更しました"
+       redirect_to item_path(@item.id)
+    else
+       render :edit
+    end
+  end
   
   
-  # def destroy
-  #   @post = Post.find(params[:id])
-  #   @post.destroy
-  
+  def destroy
+    @item = Item.find(params[:id])
+    @item.destroy
+    redirect_to items_path, notice: "successfully delete book!"
     
-  # end
+  end
 
   private
   

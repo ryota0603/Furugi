@@ -27,11 +27,11 @@
               <td><%= link_to item.name,item %></td>
               <td><%= item.body %></td>
               <!--部分テンプレートにした箇所(部分的に更新したい箇所)-->
-          　　<td id="favorite_buttons_<%= item.id %>">
-            　　　<%= render "public/favorites/favorites", item: @item %>
-          　　</td>
-              <td>
-                 <p>コメント件数：<%= item.post_comments.count %></p>
+                 <td id="favorite_buttons_<%= item.id %>">
+                   <%= render "public/favorites/favorites", item: item %>
+                  </td>
+                  <p>コメント件数：<%= item.post_comments.count %></p>
+                 
               </td>
             </tr>
           <% end %>
