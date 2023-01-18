@@ -1,7 +1,11 @@
+<h2>検索結果<span class="small">(全 <%= @items.count %> 件)</span></h2>
+<h2>このエリアから探す</h2>
+      <h4><%= @area %></h4>
 <div id='map'></div>
 <% if @items %>
  <% @items.each do |item| %>
  <%= item.name %>
+ 
  <% end %>
 <% end %>
 
@@ -10,8 +14,8 @@
 
  #map{
 
-  height: 500px;
-
+  height: 700px;
+  width:  700px;
  }
 
 </style>
@@ -81,6 +85,8 @@
      }
 
     });
+    
+    
 
 
 
@@ -111,6 +117,8 @@
      infoWindow[i].open(map, marker[i]);
 
     });
+    
+    
 
    }
 
@@ -127,4 +135,19 @@
    src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API'] %>&callback=initMap">
 
 </script>
+<h2>検索結果<span class="small">(全 <%= @items.count %> 件)</span></h2>
+    <div class="row p-auto">
+      <% @items.each do |item| %>
+        <%= link_to item_path(item.id) do %>
+          <div class=" mx-5">
+            <% if item.image.present? %>
+              <%= image_tag item.image, size: '150x100' %>
+            <% end %>
+            <p class="text-dark"><%=item.name %></p>
+            <p class="text-dark"><%= item.body %></p>
+            <p>いいね数：<%= item.favorites.count %></p>
+            <p>コメント件数：<%= item.post_comments.count %></p>
+          </div>
+        <% end %>
+      <% end %>
 

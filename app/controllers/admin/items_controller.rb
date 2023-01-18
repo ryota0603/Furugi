@@ -1,5 +1,5 @@
 class Admin::ItemsController < ApplicationController
-  
+before_action :authenticate_admin!
   def index
     @items = Item.page(params[:page]).per(8)
     @customer = current_customer
@@ -11,32 +11,30 @@ class Admin::ItemsController < ApplicationController
     gon.item = @item # 追記
     @customer = current_customer
     @post_comment = PostComment.new
-    @post_comments = PostComment.all
-    redirect_to item_path(@item.id)
   end
   
-  # def edit 
-  #   @item = Item.find(params[:id])
+  def edit 
+    @item = Item.find(params[:id])
     
-  # end
+  end
   
-  # def update
-  #   @item = Item.find(params[:id])
-  #   if @item.update(item_params)
-  #     flash[:notice] = "商品を変更しました"
-  #     redirect_to item_path(@item.id)
-  #   else
-  #     render :edit
-  #   end
-  # end
+  def update
+    @item = Item.find(params[:id])
+    if @item.update(item_params)
+       flash[:notice] = "商品を変更しました"
+       redirect_to item_path(@item.id)
+    else
+       render :edit
+    end
+  end
   
   
-  # def destroy
-  #   @item = Item.find(params[:id])
-  #   @item.destroy
-  #   redirect_to items_path, notice: "successfully delete book!"
+  def destroy
+    @item = Item.find(params[:id])
+    @item.destroy
+    redirect_to items_path, notice: "successfully delete book!"
     
-  # end
+  end
 
   private
   

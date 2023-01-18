@@ -2,7 +2,7 @@
   <div class='row'>
     <div class='col-md-3'>
       <h2>User info</h2>
-      <%= render 'public/customers/info', customer: @item.customer %>
+      <%= render 'admin/customers/info', customer: @item.customer %>
       <div id ="map"></div>
       <style>#map {height: 400px; width: 400px;}</style>
       <script>
@@ -50,7 +50,7 @@
             <td><%= link_to 'Destroy', @item, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%></td>
           <% end %>
           <td id="favorite_buttons_<%= @item.id %>">
-            <%= render "public/favorites/favorites", item: @item %>
+            <%= render "admin/favorites/favorites", item: @item %>
           </td>
         </tr>
       </table>
