@@ -27,7 +27,6 @@ class Public::ItemsController < ApplicationController
     gon.item = @item # 追記
     @customer = current_customer
     @post_comment = PostComment.new
-    @post_comments = PostComment.all
   end
   
   def edit 

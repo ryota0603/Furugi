@@ -22,9 +22,9 @@ class Item < ApplicationRecord
   end
   # 検索機能の記述　条件分岐、大元はコントローラーに記述
   def self.search_for(content, method)
-    if method == 'perfect'
-      Item.where(name: content)
-    elsif method == 'forward'
+    if method == 'area'
+      Item.where(address: content)
+    elsif method == 'key_word'
       Item.where('name LIKE ?', content+'%')
     elsif method == 'backward'
       Item.where('shopname LIKE ?', '%'+content)

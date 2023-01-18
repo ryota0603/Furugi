@@ -60,7 +60,7 @@ namespace :admin do
     
     resources :sessions, only: [:new, :create, :destroy]
     resources :registrations, only: [:new, :create]
-    get 'search/search', as: 'search' 
+    get 'searches/search', as: 'search' 
     
   end
 

@@ -4,12 +4,12 @@
       <h2>User info</h2>
       <%= render 'public/customers/info', customer: @item.customer %>
       <div id ="map"></div>
-      <style>#map {height: 400px; width: 400px;}</style>
+      <style>#map {height: 300px; width: 300px;}</style>
       <script>
         let map;
         function initMap() {
           geocoder = new google.maps.Geocoder()
-      console.log("gon:"+gon)
+          // console.log("gon:"+gon)
           map = new google.maps.Map(document.getElementById('map'), {
             // コントローラーで定義した変数から緯度経度を呼び出し、マップの中心に表示
             center: {
@@ -31,7 +31,7 @@
       </script>
       
       <script async defer
-        src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<#%= ENV['GOOGLE_MAP_API'] %>&callback=initMap">
+        src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%= ENV['GOOGLE_MAP_API'] %>&callback=initMap">
       </script>
     </div>
     <div class='col-md-8 offset-md-1'>
@@ -54,24 +54,19 @@
           </td>
         </tr>
       </table>
+      
       <div class='col-md-8 offset-md-1'>
-         <table class='table'>
-             <thead>
-              <tr>
-                <th>コメント</th>
-              </tr>
-              </thead>
-              <tbody id="comments_area">
-               <%= render 'public/post_comments/post_comments',post_comments: @post_comments %>
-      		    </tbody>
-      		</table>
-      		<div class="new-comment">
+        <h4>コメント</h4>
+        <diV id="index">
+          <%= render 'public/post_comments/post_comments', item: @item %>
+        </diV>
+         
+      		<div>
         		<%= render 'public/post_comments/form', item: @item, post_comment: @post_comment %>
         	</div>
           <div class ="comment">
             <%= render 'public/post_comments/comment', item: @item  %>
           </div>
-        　
       </div>
       
 - 
