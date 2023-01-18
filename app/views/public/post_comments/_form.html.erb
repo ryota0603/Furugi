@@ -1,4 +1,4 @@
-<%= form_with model: @post_comments, url: item_post_comments_path, local: false do |f| %>
+<%= form_with model: [item, post_comment], url: item_post_comments_path(item), local: false do |f| %>
     <div class= "form-group">
       <%= f.text_area :comment, placeholder: "コメントをここに", class: "form-control introduction"%>
       <%= f.submit "送信する" %>

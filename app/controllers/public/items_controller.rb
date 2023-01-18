@@ -28,7 +28,6 @@ class Public::ItemsController < ApplicationController
     @customer = current_customer
     @post_comment = PostComment.new
     @post_comments = PostComment.all
-    #redirect_to item_path(@item.id)
   end
   
   def edit 

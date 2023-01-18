@@ -1,6 +1,16 @@
-<% post_comments.each do |comment| %>
-  <tr>
-    <td><%= comment.comment %></td>
-    <td><%= link_to 'Destroy',item_post_comment_path(comment.post,comment),  method: :delete, remote: true, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%></td>
-  </tr>
+<% @item.post_comments.each do |post_comment| %>
+  <li>
+    <%= link_to customer_path(post_comment.customer_id) do %>
+      <%= image_tag post_comment.customer.get_profile_image, class: "rounded-circle", size:'50x50' %>
+      <%= post_comment.customer.name %>
+    <% end %>
+  </li>
+  <li>
+    <%= post_comment.comment %>
+  </li>
+  <% if post_comment.customer == current_customer %>
+    <li>
+      <%= link_to '削除', item_post_comment_path(@item.id,post_comment.id), method: :delete, remote: true, data: { confirm: '削除しますか?' } %>
+    </li>
+  <% end %>
 <% end %>

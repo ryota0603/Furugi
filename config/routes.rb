@@ -37,7 +37,7 @@ namespace :admin do
      get 'followers' => 'relationships#followers', as: 'followers'
     end
     resources :sessions, only: [:new, :create, :destroy]
-     get 'search' => 'customers#search'
+     get '/search', to: 'searches#search'
   end
 
   scope module: :public do

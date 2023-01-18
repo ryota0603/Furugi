@@ -1,31 +1,20 @@
 class Public::PostCommentsController < ApplicationController
 
+  # def index
+  #   @item = Item.find(params[:item_id])
+  #   @comment = PostComment.new
+  # end
+
   def create
-    # @item = Item.find(params[:item_id])
-     @item = Item.find(params[:item_id])
-    # comment = current_customer.post_comment_comments.new(post_comment_params)
-    comment = current_customer.post_comments.new(post_comment_params)
-    # comment.item_id = @item.id
-    comment.item_id = @item.id
-    # # comment.save
-    #p comment
-    comment.save
-    # @items= Item.find(params[:item_id])
-    # @post_comment = PostComment.new
-    # @post_comments = PostComment.all
-    @post_comments = PostComment.all
-    # render  "public/items/show"
-    #render  "public/items/show"
-    render_to item_path(@item.id)
-  end
-  
-  def destroy
     @item = Item.find(params[:item_id])
-    @post_comment = PostComment.find(params[:id])
-    @post_comment.destroy
-    @post_comment = PostComment.new
-    @post_comments = PostComment.all
-    render "public/items/show"
+    @comment = current_customer.post_comments.new(post_comment_params)
+    @comment.item_id = @item.id
+    @comment.save
+  end
+
+  def destroy
+    @comment = PostComment.find_by(id: params[:id], item_id: params[:item_id])
+    @comment.destroy
   end
 
   private

@@ -27,9 +27,9 @@ class Item < ApplicationRecord
     elsif method == 'forward'
       Item.where('name LIKE ?', content+'%')
     elsif method == 'backward'
-      Item.where('name LIKE ?', '%'+content)
+      Item.where('shopname LIKE ?', '%'+content)
     else
-      Item.where('name LIKE ?', '%'+content+'%')
+      Item.where('address LIKE ?', '%'+content+'%')
     end
   end
 end

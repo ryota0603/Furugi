@@ -1,12 +1,7 @@
-<div class='container'>
-  <div class='row'>
-    <div class='col-md-4'>
-      <h2>このエリアから探す</h2>
-      <h4><%= @area %></h4>
-      <h5><%= link_to "地図を見る", maps_path(area: @area) %></h5>
-    </div
-    <div class='col-md-8 offset-md-1'>
-    <h2>検索結果<span class="small">(全 <%= @items.count %> 件)</span></h2>
+<div class="container">
+  <div class="row">
+    <h2>投稿一覧<span class="small">(全 <%= @items.count %> 件)</span></h2>
+  </div>
     <div class="row p-auto">
       <% @items.each do |item| %>
         <%= link_to item_path(item.id) do %>
@@ -21,9 +16,8 @@
           </div>
         <% end %>
       <% end %>
-    </div>
-     <div class="mt-4 d-flex justify-content-center">
-       <%= paginate @items %>
-     </div>
-  </div>
-</div>
+   </div>
+   <div class="mt-4 d-flex justify-content-center">
+     <%= paginate @items %>
+   </div>
+ </div>
