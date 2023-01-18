@@ -1,10 +1,5 @@
 class Public::PostCommentsController < ApplicationController
-
-  # def index
-  #   @item = Item.find(params[:item_id])
-  #   @comment = PostComment.new
-  # end
-
+  
   def create
     @item = Item.find(params[:item_id])
     @post_comment = current_customer.post_comments.new(post_comment_params)

@@ -1,5 +1,9 @@
 <div id='map'></div>
-
+<% if @items %>
+ <% @items.each do |item| %>
+ <%= item.name %>
+ <% end %>
+<% end %>
 
 
 <style>

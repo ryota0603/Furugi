@@ -21,15 +21,11 @@ class Item < ApplicationRecord
     favorites.exists?(customer_id: customer.id)
   end
   # 検索機能の記述　条件分岐、大元はコントローラーに記述
-  def self.search_for(content, method)
+  def self.search_for(area, key_word, method)
     if method == 'area'
-      Item.where(address: content)
+      Item.where("address LIKE ?",'%'+area+'%')
     elsif method == 'key_word'
-      Item.where('name LIKE ?', content+'%')
-    elsif method == 'backward'
-      Item.where('shopname LIKE ?', '%'+content)
-    else
-      Item.where('address LIKE ?', '%'+content+'%')
+      Item.where('name LIKE ? or shopname LIKE ?','%'+ key_word+'%','%'+ key_word+'%')
     end
   end
 end
