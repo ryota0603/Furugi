@@ -23,10 +23,14 @@ class Public::ItemsController < ApplicationController
   end
   
   def show
-    @item = Item.find(params[:id])
-    gon.item = @item # 追記
-    @customer = current_customer
-    @post_comment = PostComment.new
+    if current_customer
+      @item = Item.find(params[:id])
+      gon.item = @item # 追記
+      @customer = current_customer
+      @post_comment = PostComment.new
+    else
+       redirect_to new_customer_registration_path
+    end
   end
   
   def edit 

@@ -13,26 +13,10 @@ before_action :authenticate_admin!
     @post_comment = PostComment.new
   end
   
-  def edit 
-    @item = Item.find(params[:id])
-    
-  end
-  
-  def update
-    @item = Item.find(params[:id])
-    if @item.update(item_params)
-       flash[:notice] = "商品を変更しました"
-       redirect_to item_path(@item.id)
-    else
-       render :edit
-    end
-  end
-  
-  
   def destroy
     @item = Item.find(params[:id])
     @item.destroy
-    redirect_to items_path, notice: "successfully delete book!"
+    redirect_to admin_items_path, notice: "successfully delete book!"
     
   end
 

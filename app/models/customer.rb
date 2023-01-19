@@ -40,15 +40,9 @@ class Customer < ApplicationRecord
   end
   
   #会員検索機能の記述
-  def self.search_for(content, method)
-    if method == 'perfect'
-      Customer.where(name: content)
-    elsif method == 'forward'
-      Customer.where('name LIKE ?', content + '%')
-    elsif method == 'backward'
-      Customer.where('name LIKE ?', '%' + content)
-    else
-      Customer.where('name LIKE ?', '%' + content + '%')
+  def self.search_for(key_word, method)
+    if method == 'key_word'
+      Item.where('name LIKE ? or emall LIKE ?','%'+ key_word+'%','%'+ key_word+'%')
     end
   end
   #ゲストログインの記述

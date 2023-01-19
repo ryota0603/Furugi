@@ -6,8 +6,6 @@
         会員の方はこちらからログイン
       </mark>
       <div>
-        <br>
-      </div>
         <%= form_with model: @customer, url: customer_session_path do |f| %>
           <div class="field mb-4">
             <%= f.label :メールアドレス %>
@@ -19,12 +17,16 @@
           </diV>
           <%= f.submit "ログイン", class: "btn btn-primary" %>
         <% end %>
-        <div class="mt-5">
+      </div>
+      <div class="row">
+        <%= link_to 'ゲストログイン（閲覧用）', customers_guest_sign_in_path, class: "btn btn-secondary  sign_in", method: :post %>
+      </div>
+      <div class="mt-5">
           <mark class="h6 bg-light">会員登録がお済みでない方</mark>
         <div>
           <br>
         </div>
-        </div>
+      </div>
         <%= link_to "こちら", new_customer_registration_path %>  から新規登録を行ってください。
     </div>
   </div>

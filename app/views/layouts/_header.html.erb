@@ -1,34 +1,41 @@
+<!--// include via CDN for turbo support-->
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.2/flowbite.turbo.min.js"></script>-->
+
+<!--// include via CDN without turbo support-->
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.2/flowbite.min.js"></script>-->
+
 <header>
-  <nav class="navbar navbar-expand-lg navbar-light ">
-    <div class="container">
-      <div class="navbar-brand">
-        <%= link_to root_path do %>
-          <%= image_tag 'logo.png', size:"100x100" %>
+      <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+        <h5 class="my-0 mr-md-auto font-weight-normal">
+          <%= link_to root_path do %>
+           <%= image_tag 'logo.png', size:"100x100" %>
+          <% end %></h5>
+        <% if customer_signed_in? %>
+                  <a class="nav-item mr-5 pt-2">
+                    ようこそ！<%= current_customer.name %>さん！！
+                  </a>
+          <nav class="my-2 my-md-0 mr-md-3">
+            <a class="p-2 text-dark"><%= link_to " About", about_path, class: 'text-dark align-middle' %></a>
+            <a class="p-2 text-dark"><%= link_to " マイページ", customer_path(current_customer), class: 'text-dark align-middle' %></a>
+            <a class="p-2 text-dark"><%= link_to " 投稿検索", search_path, class: 'text-dark align-middle' %></a>
+            <a class="p-2 text-dark"><%= link_to " 投稿一覧", items_path, class: 'text-dark align-middle' %></a>
+          </nav>
+          <a><%= link_to " ログアウト", destroy_customer_session_path, method: :delete, class: "btn btn-outline-primary" %></a>
+        <% elsif admin_signed_in? %>
+          <nav class="my-2 my-md-0 mr-md-3">
+            <a class="p-2 text-dark" href="#"><%= link_to "会員一覧", admin_customers_path, class: 'text-dark align-middle' %></a>
+            <a class="p-2 text-dark" href="#"><%= link_to "投稿検索", admin_customers_path, class: 'text-dark align-middle' %></a>
+            <a class="p-2 text-dark" href="#"><%= link_to "投稿一覧", admin_items_path, class: 'text-dark align-middle' %></a>
+          </nav>
+          <a><%= link_to " ログアウト", destroy_admin_session_path, method: :delete, class: "btn btn-outline-primary" %></a>
+        <% else %>
+          <nav class="my-2 my-md-0 mr-md-3">
+            <a class="p-2 text-dark" href="#"><%= link_to " About", about_path, class: 'text-dark align-middle' %></a>
+            <a class="p-2 text-dark" href="#"><%= link_to " 投稿検索", search_path, class: 'text-dark align-middle' %></a>
+            <a class="p-2 text-dark" href="#"><%= link_to " 投稿一覧", items_path, class: 'text-dark align-middle' %></a>
+          </nav>
+          <a class="btn btn-outline-primary" href="/customers/sign_in">ログイン</a>
         <% end %>
       </div>
-
-      <ul class="navbar-nav m-3">
-        <% if customer_signed_in? %>
-          <li class="nav-item mr-5 pt-2">
-            ようこそ！<%= current_customer.name %>さん！！
-          </li>
-          <li button type="botton" class="m-3 btn btn-outline-secondary"><%= link_to " About", about_path, class: 'text-dark align-middle' %></li>
-          <li button type="botton" class="m-3 btn btn-outline-secondary"><%= link_to " マイページ", customer_path(current_customer), class: 'text-dark align-middle' %></li>
-          <li button type="botton" class="m-3 btn btn-outline-secondary"><%= link_to " 投稿検索", search_path, class: 'text-dark align-middle' %></li>
-          <li button type="botton" class="m-3 btn btn-outline-secondary"><%= link_to " 投稿一覧", items_path, class: 'text-dark align-middle' %></li>
-          <li button type="botton" class="m-3 btn btn-outline-secondary"><%= link_to " ログアウト", destroy_customer_session_path, method: :delete, class: 'text-dark align-middle' %></li>
-        <% elsif admin_signed_in? %>
-          <li button type="botton" class="m-3 btn btn-outline-secondary"><%= link_to "会員一覧", admin_customers_path, class: 'text-dark align-middle' %></li>
-          <li button type="botton" class="m-3 btn btn-outline-secondary"><%= link_to "投稿検索", admin_customers_path, class: 'text-dark align-middle' %></li>
-          <li button type="botton" class="m-3 btn btn-outline-secondary"><%= link_to "投稿一覧", admin_items_path, class: 'text-dark align-middle' %></li>
-          <li button type="botton" class="m-3 btn btn-outline-secondary"><%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'text-dark align-middle' %></li>
-        <% else %>
-          <li button type="botton" class="m-3 btn btn-outline-secondary"><%= link_to " About", about_path, class: 'text-dark align-middle' %></li>
-          <li button type="botton" class="m-3 btn btn-outline-secondary"><%= link_to " 投稿検索", search_path, class: 'text-dark align-middle' %></li>
-          <li button type="botton" class="m-3 btn btn-outline-secondary"><%= link_to " 投稿一覧", new_customer_registration_path, class: 'text-dark align-middle' %></li>
-          <li button type="botton" class="m-3 btn btn-outline-secondary"><%= link_to " ログイン", new_customer_session_path, class: 'text-dark align-middle' %></li>
-        <% end %>
-      </ul>
-    </div>
-  </nav>
 </header>
+

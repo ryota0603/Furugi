@@ -29,14 +29,16 @@
   </div>
 <% end %>
 <div class='row'>
+  <% if customer.name != "admin" %>
   <div id="follow_<%= customer.id %>">
-    <% if customer != current_customer %>
+    <% if customer_signed_in? && customer != current_customer %>
        <% if current_customer.following?(customer) %>
         <%= link_to "フォロー外す", customer_relationships_path(customer.id), method: :delete,  class: 'btn btn-success' %>
        <% else %>
         <%= link_to "フォローする", customer_relationships_path(customer.id), method: :post,  class: 'btn btn-success' %>
        <% end %>
     <% end %> 
+  <% end %>
   </div>
 </div>
 <div class='row'>

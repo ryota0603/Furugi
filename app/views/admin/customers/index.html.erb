@@ -1,3 +1,8 @@
+<!--// include via CDN for turbo support-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.2/flowbite.turbo.min.js"></script>
+
+<!--// include via CDN without turbo support-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.2/flowbite.min.js"></script>
 <div class="offset-1">
 	<div class="ml-5">
 	  <div class="ml-5">
@@ -15,30 +20,32 @@
   <div class='row'>
     <div class='col-md-2'></div>
     <div class='col-md-8'>
-      <table class='table table-bordered border-dark'>
-        <thead>
-          <tr class="table-secondary">
-            <th>会員ID</th>
-            <th>氏名</th>
-            <th>メールアドレス</th>
-            <th>ステータス</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @customers.each do |customer| %>
-            <tr>
-              <td><%= customer.id %></td>
-              <td><%= link_to customer.name, admin_customer_path(customer.id) %></td>
-              <td><%= customer.email %></td>
-              <% if customer.is_deleted == false %>
-                <td class='text-success'>有効</td>
-              <% else %>
-                <td class='text-secoundary'>退会</td>
-              <% end %>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
+      <% @customers.each do |customer| %>
+          <ul class="max-w-md divide-y divide-gray-200 dark:divide-gray-700">
+             <li class="pb-3 sm:pb-4">
+                <div class="flex items-center space-x-4">
+                   <div class="flex-shrink-0">
+                      <%= image_tag customer.get_profile_image, size:'50x50' %>
+                   </div>
+                   <div class="flex-1 min-w-0">
+                      <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
+                        <%= link_to customer.name, admin_customer_path(customer.id) %>
+                      </p>
+                      <p class="text-sm text-gray-500 truncate dark:text-gray-400">
+                        <%= customer.email %>
+                      </p>
+                   </div>
+                   <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
+                      <% if customer.is_deleted == false %>
+                          <td class='text-success'>有効</td>
+                        <% else %>
+                          <td class='text-secoundary'>退会</td>
+                      <% end %>
+                   </div>
+                </div>
+             </li>
+          </ul>
+      <% end %>
       <div class="d-flex justify-content-center">
         <%= paginate @customers %>
       </div>
@@ -46,3 +53,4 @@
     <div class='col-md-2'></div>
   </div>
 </div>
+

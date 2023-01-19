@@ -9,9 +9,13 @@ class Admin::SessionsController < Devise::SessionsController
   # end
 
   # POST /resource/sign_in
-  # def create
-  #   super
-  # end
+  def create
+   if current_customer.present?
+     redirect_to logout_path
+     return
+   end
+   super
+  end
 
   # DELETE /resource/sign_out
   # def destroy
