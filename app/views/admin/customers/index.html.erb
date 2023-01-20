@@ -10,11 +10,21 @@
 	  </div>
 	</div>
 </div>
+<h4>キーワード検索</h4>
 <div class="search-form">
   <%= form_with url: admin_search_path, method: :get, local: true do |f| %>
-    <%= f.text_field :keyword, value: @keyword %>
+    <%= f.text_field :key_word %>
+    <%= f.hidden_field :name, :value => 'name' %>
     <%= f.submit "検索" %>
   <% end %>
+</div>
+<h4>email検索</h4>
+<div class="search-form">
+<%= form_with url: admin_search_path, method: :get, local: true do |f| %>
+ <%= f.text_field :key_word %>
+ <%= f.hidden_field :name, :value => 'email' %>
+ <%= f.submit "検索" %>
+<% end %>
 </div>
 <div class='container px-5 px-sm-0 mt-3'>
   <div class='row'>

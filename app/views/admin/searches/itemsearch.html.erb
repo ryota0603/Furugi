@@ -1,14 +1,4 @@
-<div class="container">
-  <div class="row">
-    <h4>キーワード検索</h4>
-      <div class="search-form">
-        <%= form_with url: admin_itemsearch_path, method: :get, local: true do |f| %>
-          <%= f.text_field :key_word %>
-          <%= f.hidden_field :method, :value => 'key_word' %>
-          <%= f.submit "検索" %>
-        <% end %>
-      </div>
-    <h2>投稿一覧<span class="small">(全 <%= @items.count %> 件)</span></h2>
+ <h2>検索結果<span class="small">(全 <%= @items.count %> 件)</span></h2>
   </div>
     <div class="row p-auto">
       <% @items.each do |item| %>
@@ -26,7 +16,5 @@
       <% end %>
    </div>
    <div class="mt-4 d-flex justify-content-center">
-     <%= paginate @items %>
+     <!--<#%= paginate @items %>-->
    </div>
- </div>
-

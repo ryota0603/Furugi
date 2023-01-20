@@ -40,7 +40,8 @@ namespace :admin do
      get 'followers' => 'relationships#followers', as: 'followers'
     end
     resources :sessions, only: [:new, :create, :destroy]
-     get 'searches/search', as: 'search' 
+     get 'searches/search', as: 'search'
+     get 'searches/itemsearch',as: 'itemsearch'
   end
 
   scope module: :public do
@@ -64,6 +65,7 @@ namespace :admin do
     resources :sessions, only: [:new, :create, :destroy]
     resources :registrations, only: [:new, :create]
     get 'searches/search', as: 'search' 
+    get 'searches/usersearch', as: 'usersearch'
     
   end
 

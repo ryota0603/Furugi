@@ -41,8 +41,10 @@ class Customer < ApplicationRecord
   
   #会員検索機能の記述
   def self.search_for(key_word, method)
-    if method == 'key_word'
-      Item.where('name LIKE ? or emall LIKE ?','%'+ key_word+'%','%'+ key_word+'%')
+    if method == 'name'
+      Customer.where('name LIKE ?' ,'%' + key_word + '%')
+    else 
+      Customer.where('email LIKE ?' ,'%' + key_word + '%')
     end
   end
   #ゲストログインの記述

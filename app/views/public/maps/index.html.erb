@@ -2,12 +2,6 @@
 <h2>このエリアから探す</h2>
       <h4><%= @area %></h4>
 <div id='map'></div>
-<% if @items %>
- <% @items.each do |item| %>
- <%= item.name %>
- 
- <% end %>
-<% end %>
 
 
 <style>
@@ -42,7 +36,7 @@
 
    // LatLngに位置座標を代入
 
-   LatLng = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
+   LatLng = new google.maps.LatLng(gon.lat,gon.lag);
 
 
 

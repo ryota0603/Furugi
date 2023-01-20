@@ -72,6 +72,6 @@ gem 'kaminari','~> 1.2.1'
 #マップ機能実装
 gem 'gon'
 gem 'geocoder'
-gem "tailwindcss-rails", "~> 2.0"
-
-gem "importmap-rails", "~> 1.1"
+# gem "tailwindcss-rails", "~> 2.0"
+# 余裕があったらレイアウト変えたい。
+# gem "importmap-rails", "~> 1.1"
