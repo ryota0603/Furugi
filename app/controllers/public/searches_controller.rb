@@ -5,9 +5,12 @@ class Public::SearchesController < ApplicationController
       @method = params[:method]
       @area = params[:area]
       @key_word = params[:key_word]
-      @items = Item.search_for(@area, @key_word, @method)
+      @items = Item.search_for(@area, @key_word, @method).page(params[:page]).per(8)
       if @method == "area"
         render "public/maps/index"
+      else 
+        render "public/items/searchitems"
+        
       end
     end
   end

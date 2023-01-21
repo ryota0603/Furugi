@@ -1,6 +1,6 @@
 <section class="jumbotron text-center">
       <!-- <h1 class="jumbotron-heading">Album example</h1> -->
-      <h2 class="jumbotron-heading">投稿一覧<span class="small">(全 <%= @items.count %> 件)</span></h2>
+      <h2 class="jumbotron-heading">検索結果<span class="small">(全 <%= @items.count %> 件)</span></h2>
       <!-- <p class="lead text-muted">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don't simply skip over it entirely.</p> -->
 </section>
     <div class="container">
@@ -29,6 +29,7 @@
   <div class="mt-4 d-flex justify-content-center">
      <%= paginate @items %>
   </div>
+  
   
 
  
