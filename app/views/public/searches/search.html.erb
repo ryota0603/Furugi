@@ -1,25 +1,32 @@
-
-
 <div class="container">
-  <h4>エリア検索</h4>
-  <div>
-    <%= form_with url: maps_path, method: :get, local: true do |f| %>
-      <%= f.text_field :area %>
-      <%= f.hidden_field :method, value: "area" %>
-      <%= f.submit '検索', class: "btn btn-primary" %>
-    <% end %>
-  </div>
-  <h4>キーワード検索</h4>
-  <div>
-    <%= form_with url: search_path, method: :get, local: true do |f| %>
-      <%= f.text_field :key_word %>
-      <%= f.hidden_field :method, value: "key_word" %>
-      <%= f.submit '検索', class: "btn btn-primary" %>
-    <% end %>
-    
-    <% @items.each do |item| %>
-     <%= item.name %>
-    <% end %>
+  <div class="row">
+    <div class="text-center py-5 px-3 col-md-6 mx-auto rounded">
+　　　<mark class="h4 bg-light">
+        エリア検索
+      </mark>
+　　　<div>
+        <%= form_with url: maps_path, method: :get, local: true do |f| %>
+          <%= f.text_field :area %>
+          <%= f.hidden_field :method, value: "area" %>
+          <%= f.submit '検索', class: "btn btn-primary" %>
+        <% end %>
+      </div>
+      
+      <mark class="h4 bg-light">
+        キーワード検索
+      </mark>
+      <div>
+        <%= form_with url: search_path, method: :get, local: true do |f| %>
+          <%= f.text_field :key_word %>
+          <%= f.hidden_field :method, value: "key_word" %>
+          <%= f.submit '検索', class: "btn btn-primary" %>
+        <% end %>
+        
+        <% @items.each do |item| %>
+         <%= item.name %>
+        <% end %>
+      </div>
+    </div>
   </div>
 </div>
 

@@ -10,17 +10,19 @@ class Admin::SessionsController < Devise::SessionsController
 
   # POST /resource/sign_in
   def create
-   if current_customer.present?
-     redirect_to logout_path
-     return
-   end
+  # if current_customer.present?
+  #   redirect_to logout_path
+  #   return
+  # end
+  # true にする記述
    super
   end
 
   # DELETE /resource/sign_out
-  # def destroy
-  #   super
-  # end
+  def destroy
+    # falseにする記述
+    super
+  end
 
   # protected
 

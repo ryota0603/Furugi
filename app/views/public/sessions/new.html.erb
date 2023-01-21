@@ -1,22 +1,44 @@
 <div class="container">
-  <mark class="h4 bg-light ml-5">ログイン</mark>
+  <h4 class="font-weight-normal text-center mb-3">ログイン</h4>
   <div class="row">
     <div class="text-center py-5 px-3 col-md-6 mx-auto rounded">
       <mark class="h6 bg-light">
         会員の方はこちらからログイン
       </mark>
       <div>
-        <%= form_with model: @customer, url: customer_session_path do |f| %>
-          <div class="field mb-4">
-            <%= f.label :メールアドレス %>
-            <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-          </div>
-          <diV class="field mb-4">
-            <%= f.label :パスワード %>
-            <%= f.password_field :password, autocomplete: "current-password" %>
-          </diV>
-          <%= f.submit "ログイン", class: "btn btn-primary" %>
-        <% end %>
+       <%= form_with model: @customer, url: customer_session_path do |f| %>
+        <div class="text-center mb-4">
+          <img class="mb-4" src="../../assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+          <!-- <h1 class="h3 mb-3 font-weight-normal">Floating labels</h1> -->
+          <h1 class="h3 mb-3 font-weight-normal">ログイン</h1>
+          <!-- <p>Build form controls with floating labels via the <code>:placeholder-shown</code> pseudo-element. <a href="https://caniuse.com/#feat=css-placeholder-shown">Works in latest Chrome, Safari, and Firefox.</a></p> -->
+          
+        </div>
+      
+        <div class="form-label-group">
+          <%= f.email_field :email, class: "form-control", autofocus: true, autocomplete: "email" %>
+        
+          <!-- <label for="inputEmail">Email address</label> -->
+          <%= f.label :メールアドレス %>
+        </div>
+      
+        <div class="form-label-group">
+          <%= f.password_field :password, class: "form-control", autocomplete: "current-password" %>
+          <!-- <label for="inputPassword">Password</label> -->
+           <%= f.label :パスワード %>
+        </div>
+      
+        <div class="checkbox mb-3">
+          <label>
+            <!-- <input type="checkbox" value="remember-me"> Remember me -->
+            <input type="checkbox" value="remember-me"> 保存する
+          </label>
+        </div>
+        <!-- <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button> -->
+        <%= f.submit "ログイン", class: "btn btn-lg btn-primary btn-block" %>
+      
+        <p class="mt-5 mb-3 text-muted text-center">© 2017-2018</p>
+       <% end %>
       </div>
       <div class="row">
         <%= link_to 'ゲストログイン（閲覧用）', customers_guest_sign_in_path, class: "btn btn-secondary  sign_in", method: :post %>
@@ -31,3 +53,19 @@
     </div>
   </div>
 </div>
+
+
+
+
+<%= form_with model: @customer, url: customer_session_path do |f| %>
+          <div class="field mb-4">
+            <%= f.label :メールアドレス %>
+            <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+          </div>
+          <diV class="field mb-4">
+            <%= f.label :パスワード %>
+            <%= f.password_field :password, autocomplete: "current-password" %>
+          </diV>
+          <%= f.submit "ログイン", class: "btn btn-primary" %>
+        <% end %>
+

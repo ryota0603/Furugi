@@ -1,6 +1,6 @@
 <h4>User検索</h4>
 <div class="search-form">
-  <%= form_with url: admin_search_path, method: :get, local: true do |f| %>
+  <%= form_with url: public_usersearch_path, method: :get, local: true do |f| %>
     <%= f.text_field :key_word %>
     <%= f.hidden_field :name, :value => 'name' %>
     <%= f.submit "検索" %>
