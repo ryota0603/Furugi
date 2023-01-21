@@ -1,16 +1,12 @@
 <div class="container">
-  <h4 class="font-weight-normal text-center mb-3">ログイン</h4>
   <div class="row">
-    <div class="text-center py-5 px-3 col-md-6 mx-auto rounded">
-      <mark class="h6 bg-light">
-        会員の方はこちらからログイン
-      </mark>
+    <div class="text-center py-5 px-3 col-md-4 mx-auto rounded">
       <div>
        <%= form_with model: @customer, url: customer_session_path do |f| %>
         <div class="text-center mb-4">
-          <img class="mb-4" src="../../assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+          <img class="mb-4" src="/assets/logo.png" alt="" width="72" height="72">
           <!-- <h1 class="h3 mb-3 font-weight-normal">Floating labels</h1> -->
-          <h1 class="h3 mb-3 font-weight-normal">ログイン</h1>
+          <h1 class="h3 mt-4 mb-3 font-weight-normal bg-light">ログイン</h1>
           <!-- <p>Build form controls with floating labels via the <code>:placeholder-shown</code> pseudo-element. <a href="https://caniuse.com/#feat=css-placeholder-shown">Works in latest Chrome, Safari, and Firefox.</a></p> -->
           
         </div>
@@ -28,19 +24,14 @@
            <%= f.label :パスワード %>
         </div>
       
-        <div class="checkbox mb-3">
-          <label>
-            <!-- <input type="checkbox" value="remember-me"> Remember me -->
-            <input type="checkbox" value="remember-me"> 保存する
-          </label>
-        </div>
+        
         <!-- <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button> -->
         <%= f.submit "ログイン", class: "btn btn-lg btn-primary btn-block" %>
       
-        <p class="mt-5 mb-3 text-muted text-center">© 2017-2018</p>
+        <p class="mt-5 mb-3 text-muted text-center">© Furugi</p>
        <% end %>
       </div>
-      <div class="row">
+      <div class="text-center">
         <%= link_to 'ゲストログイン（閲覧用）', customers_guest_sign_in_path, class: "btn btn-secondary  sign_in", method: :post %>
       </div>
       <div class="mt-5">
@@ -57,15 +48,4 @@
 
 
 
-<%= form_with model: @customer, url: customer_session_path do |f| %>
-          <div class="field mb-4">
-            <%= f.label :メールアドレス %>
-            <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-          </div>
-          <diV class="field mb-4">
-            <%= f.label :パスワード %>
-            <%= f.password_field :password, autocomplete: "current-password" %>
-          </diV>
-          <%= f.submit "ログイン", class: "btn btn-primary" %>
-        <% end %>
 

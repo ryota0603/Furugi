@@ -1,75 +1,42 @@
-<div class="container">
-  <div class="row">
-    <h2>投稿一覧<span class="small">(全 <%= @items.count %> 件)</span></h2>
-  </div>
-    <div class="row p-auto">
-      <% @items.each do |item| %>
-        <%= link_to item_path(item.id) do %>
-          <div class=" mx-5">
-            <% if item.image.present? %>
-              <%= image_tag item.image, size: '150x100' %>
-            <% end %>
-            <p class="text-dark"><%=item.name %></p>
-            <p class="text-dark"><%= item.body %></p>
-            <p>いいね数：<%= item.favorites.count %></p>
-            <p>コメント件数：<%= item.post_comments.count %></p>
+<section class="jumbotron text-center">
+    <div class="container">
+      <!-- <h1 class="jumbotron-heading">Album example</h1> -->
+      <h2 class="jumbotron-heading">投稿一覧<span class="small">(全 <%= @items.count %> 件)</span></h2>
+      <!-- <p class="lead text-muted">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don't simply skip over it entirely.</p> -->
+      <p class="lead text-muted">内容や作成者など, 以下のコレクションに関する簡単な説明文を書きましょう。なるべく短く, わかりやすい文にしましょう。しかし短すぎると, 友達は見てくれないかもしれません。</p>
+    </div>
+</section>
+<div class="album py-5 bg-light">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="card mb-4 shadow-sm">
+          <% @items.each do |item| %>
+           <%= link_to item_path(item.id) do %>
+            
+              <% if item.image.present? %>
+               <%= image_tag item.image, size: '300x150' %>
+              <% end %>
+              <div class="card-body">
+                <!-- <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p> -->
+                <p class="text-dark"><%=item.name %></p>
+                <p class="text-dark"><%= item.body %></p>
+                <p>いいね数：<%= item.favorites.count %></p>
+                <p>コメント件数：<%= item.post_comments.count %></p>
+              </div>
+           <% end %>
+          <% end %>
           </div>
-        <% end %>
-      <% end %>
-   </div>
-   <div class="mt-4 d-flex justify-content-center">
-     <%= paginate @items %>
-   </div>
- </div>
- <div class="container">
-  <div class="d-flex flex-column">
-    <div class="mx-auto my-5"><%= render 'public/searches/form_cafe' %></div>
-    <div class="mr-auto  my-4"><h2>エリアから探す</h2></div>
-    <div class="row d-flex justify-content-between my-3">
-      <%= link_to searches_search_cafe_path(area: "東京",key_word: ""), class: "btn btn-outline-info" do %>
-        <div class="col d-flex flex-row pl-0">
-          <div><%= image_tag "Tokyo.jpg", class: "mr-3", size:"100x100" %></div>
-          <h5 class="align-self-center">&emsp;東京&emsp;&emsp;</h5>
         </div>
-      <% end %>
-      <%= link_to searches_search_cafe_path(area: "神奈川",key_word: ""), class: "btn btn-outline-info" do %>
-        <div class="col d-flex flex-row pl-0">
-          <div><%= image_tag "Yokohama.jpg", class: "mr-3", size:"100x100" %></div>
-          <h5 class="align-self-center">&emsp;神奈川&emsp;</h5>
-        </div>
-      <% end %>
-      <%= link_to searches_search_cafe_path(area: "愛知",key_word: ""), class: "btn btn-outline-info" do %>
-        <div class="col d-flex flex-row pl-0">
-          <div><%= image_tag "Nagoya.jpg", class: "mr-3", size:"100x100" %></div>
-          <h5 class="align-self-center">&emsp;愛知&emsp;&emsp;</h5>
-        </div>
-      <% end %>
+      </div>
     </div>
-    <div class="row d-flex justify-content-between my-3">
-      <%= link_to searches_search_cafe_path(area: "大阪",key_word: ""), class: "btn btn-outline-info" do %>
-        <div class="col d-flex flex-row pl-0">
-          <div><%= image_tag "Osaka.jpg", class: "mr-3", size:"100x100" %></div>
-          <h5 class="align-self-center">&emsp;大阪&emsp;&emsp;</h5>
-        </div>
-      <% end %>
-      <%= link_to searches_search_cafe_path(area: "京都",key_word: ""), class: "btn btn-outline-info" do %>
-        <div class="col d-flex flex-row pl-0">
-          <div><%= image_tag "Kyoto.jpg", class: "mr-3", size:"100x100" %></div>
-          <h5 class="align-self-center">&emsp;京都&emsp;&emsp;</h5>
-        </div>
-      <% end %>
-      <%= link_to searches_search_cafe_path(area: "福岡",key_word: ""), class: "btn btn-outline-info" do %>
-        <div class="col d-flex flex-row pl-0">
-          <div><%= image_tag "Fukuoka.jpg", class: "mr-3", size:"100x100" %></div>
-          <h5 class="align-self-center">&emsp;福岡&emsp;&emsp;</h5>
-        </div>
-      <% end %>
-    </div>
-    <div>
-      <%= render "link" %>
-    </div>
-  </div>
 </div>
+  <div class="mt-4 d-flex justify-content-center">
+     <%= paginate @items %>
+  </div>
+  
+
+ 
  
     　　
 
