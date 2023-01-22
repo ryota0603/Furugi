@@ -3,17 +3,10 @@ class Tag < ApplicationRecord
   has_many :items, through: :post_tags
   scope :merge_items, -> (tags){ }
   
-  def self.search_itemss_for(content, method)
+  def self.search_for(content)
     
-    if method == 'perfect'
       tags = Tag.where(name: content)
-    elsif method == 'forward'
-      tags = Tag.where('name LIKE ?', content + '%')
-    elsif method == 'backward'
-      tags = Tag.where('name LIKE ?', '%' + content)
-    else
-      tags = Tag.where('name LIKE ?', '%' + content + '%')
-    end
+   
     
     return tags.inject(init = []) {|result, tag| result + tag.items}
     

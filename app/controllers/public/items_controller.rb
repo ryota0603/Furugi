@@ -6,10 +6,12 @@ class Public::ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     @item.customer_id = current_customer.id
-    
+    tag_list = params[:item][:tag_name].split(',')
    if @item.save
+      @item.save_tags(tag_list)
      redirect_to items_path(@item), notice: "You have created book successfully."
    else 
+    @item = Item.new(item_params)
      render 'new'
    end
    

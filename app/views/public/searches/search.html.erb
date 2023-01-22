@@ -6,7 +6,7 @@
       </mark>
 　　　<div>
         <%= form_with url: maps_path, method: :get, local: true do |f| %>
-          <%= f.text_field :area %>
+          <%= f.text_field :content %>
           <%= f.hidden_field :method, value: "area" %>
           <%= f.submit '検索', class: "btn btn-primary" %>
         <% end %>
@@ -17,7 +17,7 @@
       </mark>
       <div>
         <%= form_with url: search_path, method: :get, local: true do |f| %>
-          <%= f.text_field :key_word %>
+          <%= f.text_field :content %>
           <%= f.hidden_field :method, value: "key_word" %>
           <%= f.submit '検索', class: "btn btn-primary" %>
         <% end %>

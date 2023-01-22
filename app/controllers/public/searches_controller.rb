@@ -3,14 +3,16 @@ class Public::SearchesController < ApplicationController
     @items = []
     if params[:method].present?
       @method = params[:method]
-      @area = params[:area]
-      @key_word = params[:key_word]
-      @items = Item.search_for(@area, @key_word, @method).page(params[:page]).per(8)
+      @content = params[:content]
       if @method == "area"
-        render "public/maps/index"
-      else 
-        render "public/items/searchitems"
-        
+         @items = Item.search_for(@content,@method).page(params[:page]).per(8)
+         render "public/maps/index"
+      elsif @method == "key_word"
+        @items = Item.search_for(@content,@method).page(params[:page]).per(8)
+         render "public/items/searchitems"
+      elsif @method == "tag" 
+        @items = Tag.search_for(@content)
+         render "public/items/searchitems"
       end
     end
   end
