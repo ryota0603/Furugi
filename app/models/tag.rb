@@ -1,9 +1,9 @@
 class Tag < ApplicationRecord
   has_many :post_tags, dependent: :destroy, foreign_key: 'tag_id'
   has_many :items, through: :post_tags
-  scope :merge_books, -> (tags){ }
+  scope :merge_items, -> (tags){ }
   
-  def self.search_books_for(content, method)
+  def self.search_itemss_for(content, method)
     
     if method == 'perfect'
       tags = Tag.where(name: content)
