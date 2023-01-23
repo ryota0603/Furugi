@@ -2,42 +2,35 @@
   <div class="row "><h4 class="col-md-2 col-sm-2 bg-light ">新規投稿</h4></div>
     <div class="row ">
       <div class="col-12">
-        <div>
-          <%= render 'layouts/errors', obj: @item %>
-        </div>
-        
         <%= form_with model: @item, local: true do |f| %>
           <div class="form-group  row mt-5 mb-4" >
             <%#= f.label :画像 ,class:"col-md-2 text-center" %>
             <%= f.file_field :image, accept:"image/*" %> <!--accept: "image/*"は画像ファイルのみ投稿可能-->
           </div>
             <div class="form-group mt-3 " >
-              <%#= f.label :名前 ,class:"col-md-2 text-center"  %>
               <%= f.text_field :name ,class:"form-control col-md-3", placeholder: "名前" %>
-              <%= render 'layouts/errors_2', obj: @item, attribute: :name %>
+              <%= render 'layouts/errors', obj: @item, attribute: :name %>
             </div>
             <div class="form-group mt-3 ">
               <%#= f.label :店舗名 ,class:"col-md-2 text-center"  %>
-              <%= f.text_field :shopname ,class:"form-control col-md-3"  %>
-              <%= render 'layouts/errors_2', obj: @item, attribute: :shopname %>
-            </div>
-            <div class="form-group mt-3 ">
-              <%#= f.label :住所 ,class:"col-md-2 text-center"  %>
-              <%= f.text_field :address ,class:"form-control col-md-5"  %>
-              <%= render 'layouts/errors_2', obj: @item, attribute: :address %>
-            </div>
-            
-            <div class="form-group mt-3">
-              <%#= f.label :説明 ,class:"col-md-2 text-center"  %>
-              <%= f.text_area :body ,class:"form-control col-md-7" %>
-              <%= render 'layouts/errors_2', obj: @item, attribute: :body %>
+              <%= f.text_field :shopname ,class:"form-control col-md-3", placeholder: "店舗名" %>
+              <%= render 'layouts/errors', obj: @item, attribute: :shopname %>
             </div>
             <div class="form-group mt-3">
               <%#= f.label :タグ ,class:"col-md-2 text-center"  %>
-              <%= f.text_area :tag_name ,class:"form-control col-md-7" %>
-              <%= render 'layouts/errors_2', obj: @item, attribute: :tag_name %>
+              <%= f.text_field :tag_name ,class:"form-control col-md-3", placeholder: "タグ" %>
+              <%= render 'layouts/errors', obj: @item, attribute: :tag_name %>
             </div>
-            
+            <div class="form-group mt-3 ">
+              <%#= f.label :住所 ,class:"col-md-2 text-center"  %>
+              <%= f.text_field :address ,class:"form-control col-md-5", placeholder: "正式な住所を入力してください" %>
+              <%= render 'layouts/errors', obj: @item, attribute: :address %>
+            </div>
+            <div class="form-group mt-3">
+              <%#= f.label :説明 ,class:"col-md-2 text-center"  %>
+              <%= f.text_area :body ,class:"form-control col-md-7", placeholder: "アイテムの説明" %>
+              <%= render 'layouts/errors', obj: @item, attribute: :body %>
+            </div>
             <div class="form-group text-center col-7">
               <%= f.submit "新規登録" ,class:"btn btn-success btn-lg "  %>
             </div>

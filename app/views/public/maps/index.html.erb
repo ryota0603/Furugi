@@ -1,8 +1,11 @@
-<section class=" text-center">
+<section class="jumbotron text-center">
       <!-- <h1 class="jumbotron-heading">Album example</h1> -->
       <h2 class="jumbotron-heading">検索結果<span class="small">(全 <%= @items.count %> 件)</span></h2>
+      <% if @items.present? %>
       <h2>このエリアから探す</h2>
       <h4><%= @area %></h4>
+      <% end %>
+      
       <!-- <p class="lead text-muted">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don't simply skip over it entirely.</p> -->
 </section>
 
@@ -142,19 +145,4 @@
    src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API'] %>&callback=initMap">
 
 </script>
-<h2>検索結果<span class="small">(全 <%= @items.count %> 件)</span></h2>
-    <div class="row p-auto">
-      <% @items.each do |item| %>
-        <%= link_to item_path(item.id) do %>
-          <div class=" mx-5">
-            <% if item.image.present? %>
-              <%= image_tag item.image, size: '150x100' %>
-            <% end %>
-            <p class="text-dark"><%=item.name %></p>
-            <p class="text-dark"><%= item.body %></p>
-            <p>いいね数：<%= item.favorites.count %></p>
-            <p>コメント件数：<%= item.post_comments.count %></p>
-          </div>
-        <% end %>
-      <% end %>
 
