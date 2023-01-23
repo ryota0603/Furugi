@@ -1,15 +1,26 @@
-<h2>検索結果<span class="small">(全 <%= @items.count %> 件)</span></h2>
-<h2>このエリアから探す</h2>
+<section class=" text-center">
+      <!-- <h1 class="jumbotron-heading">Album example</h1> -->
+      <h2 class="jumbotron-heading">検索結果<span class="small">(全 <%= @items.count %> 件)</span></h2>
+      <h2>このエリアから探す</h2>
       <h4><%= @area %></h4>
-<div id='map'></div>
+      <!-- <p class="lead text-muted">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don't simply skip over it entirely.</p> -->
+</section>
 
+
+<div class="container">
+  <div class="row">
+   <div class="text-center">
+    <div id='map'></div>
+   </div>
+  </div>
+ </div>
 
 <style>
 
  #map{
 
   height: 700px;
-  width:  700px;
+  width:  1200px;
  }
 
 </style>
@@ -46,7 +57,7 @@
 
     center: LatLng,
 
-    zoom: 12
+    zoom: gon.zoom
 
    });
 

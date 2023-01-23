@@ -43,7 +43,7 @@
              <%= image_tag @item.customer.get_profile_image, size:"100x100" %><br>
             <% end %>
           </td>
-          <td><%= link_to @item.name, @item %></td>
+          <td><%= @item.name %></td>
           <td><%= @item.body %></td>
           <% if admin_signed_in? || @item.customer == current_customer %>
             <td><%= link_to 'Destroy', @item, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%></td>

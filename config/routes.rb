@@ -64,6 +64,7 @@ namespace :admin do
     resources :registrations, only: [:new, :create]
     get 'searches/search', as: 'search' 
     get 'searches/usersearch', as: 'usersearch'
+    get 'favorites/like', as: 'like'
     
   end
 

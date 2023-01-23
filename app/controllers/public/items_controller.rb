@@ -1,4 +1,5 @@
 class Public::ItemsController < ApplicationController
+  before_action :authenticate_customer!,except: [:index]
   def new
     @item = Item.new
   end
@@ -11,7 +12,6 @@ class Public::ItemsController < ApplicationController
       @item.save_tags(tag_list)
      redirect_to items_path(@item), notice: "You have created book successfully."
    else 
-    @item = Item.new(item_params)
      render 'new'
    end
    
@@ -19,7 +19,7 @@ class Public::ItemsController < ApplicationController
   end
   
   def index
-    @items = Item.page(params[:page]).per(8)
+    @items = Item.page(params[:page]).per(16)
     @customer = current_customer
     @post_comment = PostComment.all
   end

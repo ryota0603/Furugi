@@ -16,11 +16,4 @@ class Public::SearchesController < ApplicationController
       end
     end
   end
-  def usersearch
-    # フォローユーザー検索機能
-    # @method = params[:name]
-    # @key_word = params[:key_word]
-    # @customers = Customer.search_for(@key_word, @method)
-  end
-  
 end

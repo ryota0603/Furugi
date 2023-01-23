@@ -1,5 +1,5 @@
 class Public::PostCommentsController < ApplicationController
-  
+  before_action :authenticate_customer!
   def create
     @item = Item.find(params[:item_id])
     @post_comment = current_customer.post_comments.new(post_comment_params)

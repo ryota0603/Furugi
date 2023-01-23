@@ -1,6 +1,6 @@
 <section class="jumbotron text-center">
       <!-- <h1 class="jumbotron-heading">Album example</h1> -->
-      <h2 class="jumbotron-heading">投稿一覧<span class="small">(全 <%= @items.count %> 件)</span></h2>
+      <h2 class="jumbotron-heading">投稿一覧</h2>
       <div>
         <%= form_with url: search_path, method: :get, local: true do |f| %>
           <%= f.text_field :content %>
