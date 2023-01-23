@@ -11,10 +11,12 @@ class Public::MapsController < ApplicationController
   
       else 
         @items = Item.search_for(@area,"area")
-        gon.items = @items# 追記
-        address = Geocoder.search(@items[0].address)
-        gon.lat = address.first.coordinates[0]
-        gon.lag = address.first.coordinates[1]
+        if @items.present?
+          gon.items = @items# 追記
+          address = Geocoder.search(@items[0].address)
+          gon.lat = address.first.coordinates[0]
+          gon.lag = address.first.coordinates[1]
+        end
         if @area == "北海道"
            gon.zoom = 6.8
         elsif @area == "岩手"
