@@ -18,7 +18,6 @@ class Item < ApplicationRecord
   geocoded_by :address
   after_validation :geocode
   
-  
   def save_tags(saveitem_tags)
     # 現在のユーザーの持っているskillを引っ張ってきている
     current_tags = self.tags.pluck(:name) unless self.tags.nil?
