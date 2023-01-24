@@ -12,6 +12,7 @@ class Public::SearchesController < ApplicationController
          render "public/items/searchitems"
       elsif @method == "tag" 
         @items = Tag.search_for(@content)
+        @items = Kaminari.paginate_array(@items).page(params[:page]).per(10)
          render "public/items/searchitems"
       end
     end

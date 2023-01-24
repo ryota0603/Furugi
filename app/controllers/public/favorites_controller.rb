@@ -17,7 +17,7 @@ class Public::FavoritesController < ApplicationController
   def like
    @customer = current_customer
    favorites = Favorite.where(customer_id: @customer.id).pluck(:item_id)
-   @items = Item.where(id: favorites)
+   @items = Item.where(id: favorites).page(params[:page]).per(15)
   end
 end
 

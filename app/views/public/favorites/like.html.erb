@@ -1,17 +1,49 @@
-<h2>投稿一覧<span class="small">(全 <%= @items.count %> 件)</span></h2>
-  </div>
-    <div class="row p-auto">
-      <% @items.each do |item| %>
-        <%= link_to admin_item_path(item.id) do %>
-          <div class=" mx-5">
-            <% if item.image.present? %>
-              <%= image_tag item.image, size: '150x100' %>
+<section class="jumbotron text-center">
+      <!-- <h1 class="jumbotron-heading">Album example</h1> -->
+      <h2 class="jumbotron-heading">いいね一覧</h2>
+      
+      <!-- <p class="lead text-muted">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don't simply skip over it entirely.</p> -->
+</section>
+    <div class="container">
+      <div class="row">
+        <% @items.each do |item| %>
+        <div class="col-3">
+          <div class="card mb-4 shadow-sm">
+            <%= link_to item_path(item.id) do %>
+              <% if item.image.present? %>
+                <%= image_tag item.image, size: '300x150', style: "width:100%", class:"images", name: item.id.to_s %>
+                <a href="" id="<%=item.id %>"><%=item.name %></a>
+              <% end %>
+              <div class="card-body">
+                <!-- <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p> -->
+                <p class="text-dark"><%= item.body %></p>
+                
+                <p><i class="fas fa-heart"></i><%= item.favorites.count %></p>
+                <p><i class="fas fa-comment-alt"></i><%= item.post_comments.count %></p>
+              </div>
             <% end %>
-            <p class="text-dark"><%=item.name %></p>
-            <p class="text-dark"><%= item.body %></p>
-            <p>いいね数：<%= item.favorites.count %></p>
-            <p>コメント件数：<%= item.post_comments.count %></p>
           </div>
-        <% end %>
+        </div>
       <% end %>
-   </div>
+
+      </div>
+    </div>
+  <div class="mt-4 d-flex justify-content-center">
+     <%= paginate @items %>
+  </div>
+  
+
+ 
+ 
+    　　
+
+
+
+<script>
+// image_tagのクラス名と合わせる
+const images = document.getElementsByClassName("images")
+for (const image of images) {
+  // image_tagのname属性を左辺に入れる
+  document.getElementById(image.name).href = image.src
+}
+</script>

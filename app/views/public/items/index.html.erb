@@ -3,7 +3,7 @@
       <h2 class="jumbotron-heading">投稿一覧</h2>
       <div>
         <%= form_with url: search_path, method: :get, local: true do |f| %>
-          <%= f.text_field :content %>
+          <%= f.text_field :content , placeholder: "タグ検索" %>
           <%= f.hidden_field :method, value: "tag" %>
           <%= f.submit '検索', class: "btn btn-primary" %>
         <% end %>
@@ -17,15 +17,16 @@
           <div class="card mb-4 shadow-sm">
             <%= link_to item_path(item.id) do %>
               <% if item.image.present? %>
-                <%= image_tag item.image, size: '300x150', style: "width:100%", class:"images", name: item.id.to_s %>
-                <a href="" id="<%=item.id %>"><%=item.name %></a>
+                <%= image_tag item.image, size: '300x150', style: "width:100%", class:"images"%>
               <% end %>
               <div class="card-body">
-                <!-- <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p> -->
+                <p class="text-dark"></p>
                 <p class="text-dark"><%= item.body %></p>
-                
-                <p><i class="fas fa-heart"></i><%= item.favorites.count %></p>
-                <p><i class="fas fa-comment-alt-lines"></i><%= item.post_comments.count %></p>
+                <div class="row">
+                  <p><i class="fas fa-heart"></i><%= item.favorites.count %></p>
+                  <p>..</p>
+                  <p><i class="fas fa-comment-alt"></i><%= item.post_comments.count %></p>
+                </div>
               </div>
             <% end %>
           </div>
@@ -45,11 +46,3 @@
 
 
 
-<script>
-// image_tagのクラス名と合わせる
-const images = document.getElementsByClassName("images")
-for (const image of images) {
-  // image_tagのname属性を左辺に入れる
-  document.getElementById(image.name).href = image.src
-}
-</script>

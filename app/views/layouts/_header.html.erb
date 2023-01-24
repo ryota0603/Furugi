@@ -7,9 +7,20 @@
 <header>
       <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
         <h5 class="my-0 mr-md-auto font-weight-normal">
-          <%= link_to root_path do %>
-           <%= image_tag 'logo.png', size:"100x100" %>
-          <% end %></h5>
+          <% if customer_signed_in? %>
+            <%= link_to root_path do %>
+             <%= image_tag 'logo.png', size:"100x100" %>
+            <% end %>
+            <% elsif admin_signed_in? %>
+              <%= link_to admin_homes_top_path do %>
+               <%= image_tag 'logo.png', size:"100x100" %>
+              <% end %>
+            <% else %>
+              <%= link_to root_path do %>
+               <%= image_tag 'logo.png', size:"100x100" %>
+              <% end %>
+          <% end %>
+          </h5>
         <% if customer_signed_in? %>
                   <a class="nav-item mr-5 pt-2">
                     ようこそ！<%= current_customer.name %>さん！！

@@ -4,7 +4,7 @@ class Public::CustomersController < ApplicationController
   before_action :ensure_guest_user, only: [:edit]
   def show
     @customer = Customer.find(params[:id])
-    @items = @customer.items
+    @items = @customer.items.page(params[:page]).per(7)
   end
   def edit
     @customer = Customer.find(params[:id])

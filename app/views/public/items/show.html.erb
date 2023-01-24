@@ -2,7 +2,8 @@
   <div class='row'>
     <div class='col-md-3'>
       <%= render 'public/customers/info', customer: @item.customer %>
-      <div id ="map"></div>
+      <div><%= @item.address %></div>
+      <div id ="map",class: "images mb-5 shadow-sm" ></div>
       <style>#map {height: 300px; width: 300px;}</style>
       <script>
         let map;
@@ -32,7 +33,6 @@
       <script async defer
         src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%= ENV['GOOGLE_MAP_API'] %>&callback=initMap">
       </script>
-      <%= @item.address %>
     </div>
     <div class='col-md-8 offset-md-1'>
   		<h2>投稿詳細</h2>
