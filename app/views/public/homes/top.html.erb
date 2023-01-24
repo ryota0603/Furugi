@@ -6,8 +6,8 @@
   <div class="row">
     <div class="col-sm-2">
     </div>
-  　<div class="col-sm-10 ">
-      <div calss ="d-flex align-items-center" style="height:300px">
+  　<div class="col-sm-12 ">
+      <div calss ="d-flex justify-content-center" style="height:300px">
         <div class="card" style="max-width: 500px;">
           <img class="card-img img-fluid" src="/assets/home.png">
             <div class="card-img-overlay">
@@ -18,7 +18,7 @@
             </div>
           </div>
         </div>
-        <h3><strong>NEW POST</strong></h3>
+        <h4><strong>NEW POST</strong></h4>
         <div class="items">  
           <% @item.first(12).each do |item| %>
            <div class="card">
@@ -34,10 +34,6 @@
             </div>
           <% end %>
         </div>
-          <div class="text-md-right pd-3">
-            
-            <%= link_to "全ての投稿を見る >", items_path %>
-          </div>
       </div>
     </div>
 </div>
