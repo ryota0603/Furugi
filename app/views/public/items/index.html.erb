@@ -1,5 +1,4 @@
 <section class="jumbotron text-center">
-  <!-- <h1 class="jumbotron-heading">Album example</h1> -->
   <h2 class="jumbotron-heading">投稿一覧</h2>
   <div>
     <%= form_with url: search_path, method: :get, local: true do |f| %>
@@ -8,16 +7,15 @@
       <%= f.submit '検索', class: "btn btn-primary" %>
     <% end %>
   </div>
-  <!-- <p class="lead text-muted">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don't simply skip over it entirely.</p> -->
 </section>
-<div class="container-fluid">
+<div class="container-fluid mt-50">
   <div class="row">
     <% @items.each do |item| %>
       <div class="col-md-4">
         <div class="product-card mb-30">
           <div class="product-badge bg-secondary border-default text-body">
             <% if item.tags.blank? %>
-              <span>タグないです</span>
+              <span>none</span>
             <% else %>
               <span><%= item.tags.first.name %></span>
             <% end %>
@@ -34,11 +32,11 @@
           </div>
           <div class="product-button-group">
             <a class="product-button btn-wishlist" data-abc="true">
-              <i class="fa fa-heart"></i>
+              <i class="fas fa-heart " aria-hidden="true" style="color: red; font-size:1.4em;"></i>
               <span><%= item.favorites.count %></span>
             </a>
             <a class="product-button btn-compare" href="<%= item_path(item.id) %>" data-abc="true">
-              <i class="fas fa-comment-alt"></i>
+              <i class="fas fa-comment-alt"  aria-hidden="true" style="color: blue; font-size:1.4em;"></i>
               <span><%= item.post_comments.count %></span>
             </a>
             <%= link_to item_path(item.id), class: "product-button", data: { abc: "true" } do %>
@@ -55,34 +53,7 @@
 <div class="mt-4 d-flex justify-content-center">
    <%= paginate @items %>
 </div>
-  
 
- 
- 
-    　　
-
-
-
-<% @items.each do |item| %>
-        <div class="col-3">
-          <div class="card mb-4 shadow-sm">
-            <%= link_to item_path(item.id) do %>
-              <% if item.image.present? %>
-                <%= image_tag item.image, size: '300x150', style: "width:100%", class:"images"%>
-              <% end %>
-              <div class="card-body">
-                <p class="text-dark"></p>
-                <p class="text-dark"><%= item.body %></p>
-                <div class="d-flex flex-row-reverse">
-                  <p><i class="fas fa-heart"></i><%= item.favorites.count %></p>
-                  <p>..</p>
-                  <p><i class="fas fa-comment-alt"></i><%= item.post_comments.count %></p>
-                </div>
-              </div>
-            <% end %>
-          </div>
-        </div>
-      <% end %>
 <style>
   body{
     background-color: #eee;

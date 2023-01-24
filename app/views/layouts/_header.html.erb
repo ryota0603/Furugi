@@ -1,9 +1,3 @@
-<!--// include via CDN for turbo support-->
-<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.2/flowbite.turbo.min.js"></script>-->
-
-<!--// include via CDN without turbo support-->
-<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.2/flowbite.min.js"></script>-->
-
 <header>
       <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
         <h5 class="my-0 mr-md-auto font-weight-normal">
@@ -20,7 +14,7 @@
                <%= image_tag 'logo.png', size:"100x100" %>
               <% end %>
           <% end %>
-          </h5>
+        </h5>
         <% if customer_signed_in? %>
                   <a class="nav-item mr-5 pt-2">
                     ようこそ！<%= current_customer.name %>さん！！
@@ -31,14 +25,13 @@
             <a class="p-2 text-dark"><%= link_to " 投稿検索", search_path, class: 'text-dark align-middle' %></a>
             <a class="p-2 text-dark"><%= link_to " 投稿一覧", items_path, class: 'text-dark align-middle' %></a>
           </nav>
-          <a><%= link_to " ログアウト", destroy_customer_session_path, method: :delete, class: "btn btn-outline-primary" %></a>
+          <a><%= link_to "Log Out", destroy_customer_session_path, method: :delete, class: "btn btn-outline-primary" %></a>
         <% elsif admin_signed_in? %>
           <nav class="my-2 my-md-0 mr-md-3">
             <a class="p-2 text-dark" href="#"><%= link_to "会員一覧", admin_customers_path, class: 'text-dark align-middle' %></a>
-            <a class="p-2 text-dark" href="#"><%= link_to "投稿検索", admin_customers_path, class: 'text-dark align-middle' %></a>
             <a class="p-2 text-dark" href="#"><%= link_to "投稿一覧", admin_items_path, class: 'text-dark align-middle' %></a>
           </nav>
-          <a><%= link_to " ログアウト", destroy_admin_session_path, method: :delete, class: "btn btn-outline-primary" %></a>
+          <a><%= link_to "Log Out", destroy_admin_session_path, method: :delete, class: "btn btn-outline-primary" %></a>
         <% else %>
           <nav class="my-2 my-md-0 mr-md-3">
             <a class="p-2 text-dark" href="#"><%= link_to " About", about_path, class: 'text-dark align-middle' %></a>

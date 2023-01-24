@@ -12,30 +12,30 @@
           <img class="card-img img-fluid" src="/assets/home.png">
             <div class="card-img-overlay">
               <p class="h5 font-weight-light text-light pt-5">
-                ようこそ、ながのCAKEへ！<br>
-                このサイトは、ケーキ販売のECサイトになります。<br>
-                会員でない方も商品の閲覧はできますが、<br>
-                購入には会員登録が必要になります。<br>
+                <p class=>素敵な出会いが見つかる</p>
+                <p>一点モノに出会う確率が高くなる</p>
               </p>
             </div>
           </div>
         </div>
-        <h3><strong>新着投稿</strong></h3>
+        <h3><strong>NEW POST</strong></h3>
         <div class="items">  
           <% @item.first(12).each do |item| %>
-            <div class="card">
+           <div class="card">
+             <%= link_to item_path(item.id) do %>
               <div class="media media-2x1 gd-primary">
                 <%= image_tag item.image, class: "profile-image"%>
               </div>
               <div class="card-body">
-                <h5 class="card-title">Delbert Simonas</h5>
-                <p class="card-text">"Online reviews can make or break a customer's decision to make a purchase. Read about these customer review on site"</p>
+                <h5 class="card-title"><%= item.name %></h5>
+                <p class="card-text"><%= item.body %></p>
               </div>
+              <% end %>
             </div>
           <% end %>
         </div>
-                    
           <div class="text-md-right pd-3">
+            
             <%= link_to "全ての投稿を見る >", items_path %>
           </div>
       </div>

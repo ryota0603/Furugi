@@ -10,7 +10,7 @@ class Public::ItemsController < ApplicationController
     tag_list = params[:item][:tag_name].split(',')
    if @item.save
       @item.save_tags(tag_list)
-     redirect_to items_path(@item), notice: "You have created book successfully."
+     redirect_to items_path(@item)
    else 
      render 'new'
    end
@@ -43,7 +43,7 @@ class Public::ItemsController < ApplicationController
   def update
     @item = Item.find(params[:id])
     if @item.update(item_params)
-       flash[:notice] = "商品を変更しました"
+       flash[:notice]
        redirect_to item_path(@item.id)
     else
        render :edit
@@ -54,7 +54,7 @@ class Public::ItemsController < ApplicationController
   def destroy
     @item = Item.find(params[:id])
     @item.destroy
-    redirect_to items_path, notice: "successfully delete book!"
+    redirect_to items_path
     
   end
 
