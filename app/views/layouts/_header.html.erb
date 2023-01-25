@@ -45,24 +45,46 @@
 <nav class="navbar navbar-expand-lg bg-dark">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">
-       <img src="https://img.icons8.com/nolan/48/warning-shield.png" width="30" class="logo"/>
+     <% if customer_signed_in? %>
+        <%= link_to root_path do %>
+          <%= image_tag 'logo.png', size:"30x30" %>
+        <% end %>
+     <% elsif admin_signed_in? %>
+        <%= link_to admin_homes_top_path do %>
+          <%= image_tag 'logo.png', size:"40x40" %>
+        <% end %>
+     <% else %>
+      <%= link_to root_path do %>
+        <%= image_tag 'logo.png', size:"40x40" %>
+      <% end %>
+     <% end %>
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav ml-auto">
-        <a class="nav-link active" aria-current="page" href="#">Dashboard</a>
+       <% if customer_signed_in? %>
+        <a class="nav-link active" aria-current="page" href="#">iii</a>
+        <a class="nav-link" href="#"><%= link_to " About", about_path %></a>
+        <a class="nav-link" href="#"><%= link_to " マイページ", customer_path(current_customer)%></a>
+        <a class="nav-link" href="#"><%= link_to " 投稿検索", search_path, class: 'text-dark align-middle' %></a>
+        <a><%= link_to "Log Out", destroy_customer_session_path, method: :delete, class: "btn btn-outline-primary" %></a>
+       <% elsif admin_signed_in? %>
+        <a class="nav-link active" aria-current="page" href="#">iii</a>
         <a class="nav-link" href="#">Candidate</a>
         <a class="nav-link" href="#">training</a>
         <a class="nav-link" href="#">Reports</a>
-
+        <a><%= link_to "Log Out", destroy_admin_session_path, method: :delete, class: "btn btn-outline-primary" %></a>
+       <% else %>
+        <a class="nav-link active" aria-current="page" href="#"></a>
+        <a class="nav-link" href="#">Candidate</a>
+        <a class="nav-link" href="#">training</a>
+        <a class="nav-link" href="#">Reports</a>
         <a class="nav-link" href="#">Meet</a>
         <a class="nav-link" href="#">Settings</a>
-        <a class="nav-link" href="#">
-            <img src="https://i.imgur.com/C4egmYM.jpg" class="rounded-circle" width="30" >
-        </a>
-       
+        <a class="btn btn-outline-primary" href="/customers/sign_in">Log in</a>
+       <% end %>
       </div>
     </div>
   </div>
