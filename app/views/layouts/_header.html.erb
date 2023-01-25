@@ -1,94 +1,46 @@
-<header class="header1">
-      <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
-        <h5 class="my-0 mr-md-auto font-weight-normal">
-          <% if customer_signed_in? %>
-            <%= link_to root_path do %>
-             <%= image_tag 'logo.png', size:"100x100" %>
-            <% end %>
-            <% elsif admin_signed_in? %>
-              <%= link_to admin_homes_top_path do %>
-               <%= image_tag 'logo.png', size:"100x100" %>
-              <% end %>
-            <% else %>
-              <%= link_to root_path do %>
-               <%= image_tag 'logo.png', size:"100x100" %>
-              <% end %>
-          <% end %>
-        </h5>
-        <% if customer_signed_in? %>
-                  <a class="nav-item mr-5 pt-2">
-                    ようこそ！<%= current_customer.name %>さん！！
-                  </a>
-          <nav class="my-2 my-md-0 mr-md-3">
-            <a class="p-2 text-dark"><%= link_to " About", about_path, class: 'text-dark align-middle' %></a>
-            <a class="p-2 text-dark"><%= link_to " マイページ", customer_path(current_customer), class: 'text-dark align-middle' %></a>
-            <a class="p-2 text-dark"><%= link_to " 投稿検索", search_path, class: 'text-dark align-middle' %></a>
-            <a class="p-2 text-dark"><%= link_to " 投稿一覧", items_path, class: 'text-dark align-middle' %></a>
-          </nav>
-          <a><%= link_to "Log Out", destroy_customer_session_path, method: :delete, class: "btn btn-outline-primary" %></a>
-        <% elsif admin_signed_in? %>
-          <nav class="my-2 my-md-0 mr-md-3">
-            <a class="p-2 text-dark" href="#"><%= link_to "会員一覧", admin_customers_path, class: 'text-dark align-middle' %></a>
-            <a class="p-2 text-dark" href="#"><%= link_to "投稿一覧", admin_items_path, class: 'text-dark align-middle' %></a>
-          </nav>
-          <a><%= link_to "Log Out", destroy_admin_session_path, method: :delete, class: "btn btn-outline-primary" %></a>
-        <% else %>
-          <nav class="my-2 my-md-0 mr-md-3">
-            <a class="p-2 text-dark" href="#"><%= link_to " About", about_path, class: 'text-dark align-middle' %></a>
-            <a class="p-2 text-dark" href="#"><%= link_to " 投稿検索", search_path, class: 'text-dark align-middle' %></a>
-            <a class="p-2 text-dark" href="#"><%= link_to " 投稿一覧", items_path, class: 'text-dark align-middle' %></a>
-          </nav>
-          <a class="btn btn-outline-primary" href="/customers/sign_in">Log in</a>
-        <% end %>
-      </div>
-</header>
 <nav class="navbar navbar-expand-lg bg-dark">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">
-     <% if customer_signed_in? %>
+       <% if customer_signed_in? %>
+          <%= link_to root_path do %>
+            <%= image_tag 'logo.png', size:"30x30" %>
+          <% end %>
+       <% elsif admin_signed_in? %>
+          <%= link_to admin_homes_top_path do %>
+            <%= image_tag 'logo.png', size:"40x40" %>
+          <% end %>
+       <% else %>
         <%= link_to root_path do %>
-          <%= image_tag 'logo.png', size:"30x30" %>
+          <%= image_tag 'logo.png', size:"70x60" %>
         <% end %>
-     <% elsif admin_signed_in? %>
-        <%= link_to admin_homes_top_path do %>
-          <%= image_tag 'logo.png', size:"40x40" %>
-        <% end %>
-     <% else %>
-      <%= link_to root_path do %>
-        <%= image_tag 'logo.png', size:"40x40" %>
-      <% end %>
-     <% end %>
+       <% end %>
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav ml-auto">
-       <% if customer_signed_in? %>
-        <a class="nav-link active" aria-current="page" href="#">iii</a>
-        <a class="nav-link" href="#"><%= link_to " About", about_path %></a>
-        <a class="nav-link" href="#"><%= link_to " マイページ", customer_path(current_customer)%></a>
-        <a class="nav-link" href="#"><%= link_to " 投稿検索", search_path, class: 'text-dark align-middle' %></a>
-        <a><%= link_to "Log Out", destroy_customer_session_path, method: :delete, class: "btn btn-outline-primary" %></a>
-       <% elsif admin_signed_in? %>
-        <a class="nav-link active" aria-current="page" href="#">iii</a>
-        <a class="nav-link" href="#">Candidate</a>
-        <a class="nav-link" href="#">training</a>
-        <a class="nav-link" href="#">Reports</a>
-        <a><%= link_to "Log Out", destroy_admin_session_path, method: :delete, class: "btn btn-outline-primary" %></a>
-       <% else %>
-        <a class="nav-link active" aria-current="page" href="#"></a>
-        <a class="nav-link" href="#">Candidate</a>
-        <a class="nav-link" href="#">training</a>
-        <a class="nav-link" href="#">Reports</a>
-        <a class="nav-link" href="#">Meet</a>
-        <a class="nav-link" href="#">Settings</a>
-        <a class="btn btn-outline-primary" href="/customers/sign_in">Log in</a>
-       <% end %>
+        <% if customer_signed_in? %>
+          <a class="nav-link active" aria-current="page" href="/homes/about">About</a>
+          <a class="nav-link" href="<%= customer_path(current_customer)%>">Mypage</a>
+          <a class="nav-link" href="<%= search_path %>">Search</a>
+          <a class="nav-link" href="<%= items_path %>">Items</a>
+          <a><%= link_to "Log Out", destroy_customer_session_path, method: :delete, class: "btn btn-outline-primary" %></a>
+        <% elsif admin_signed_in? %>
+          <a class="nav-link" href="<%= admin_customers_path %>">Customers</a>
+          <a class="nav-link" href="<%= admin_items_path %>">Items</a>
+          <a><%= link_to "Log Out", destroy_admin_session_path, method: :delete, class: "btn btn-outline-primary" %></a>
+        <% else %>
+          <a class="nav-link active" aria-current="page" href="/homes/about">About</a>
+          <a class="nav-link" href="<%= search_path %>">Search</a>
+          <a class="nav-link" href="<%= items_path %>">Items</a>
+          <a class="btn btn-outline-primary" href="/customers/sign_in">Log in</a>
+        <% end %>
       </div>
     </div>
   </div>
 </nav>
+
 <style>
   body{
 	background-color: #eee;
