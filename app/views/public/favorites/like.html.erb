@@ -1,49 +1,223 @@
 <section class="jumbotron text-center">
-      <!-- <h1 class="jumbotron-heading">Album example</h1> -->
-      <h2 class="jumbotron-heading">いいね一覧</h2>
-      
-      <!-- <p class="lead text-muted">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don't simply skip over it entirely.</p> -->
+  <h2 class="jumbotron-heading">Favorites</h2>
 </section>
-    <div class="container">
-      <div class="row">
-        <% @items.each do |item| %>
-        <div class="col-3">
-          <div class="card mb-4 shadow-sm">
-            <%= link_to item_path(item.id) do %>
-              <% if item.image.present? %>
-                <%= image_tag item.image, size: '300x150', style: "width:100%", class:"images", name: item.id.to_s %>
-                <a href="" id="<%=item.id %>"><%=item.name %></a>
-              <% end %>
-              <div class="card-body">
-                <!-- <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p> -->
-                <p class="text-dark"><%= item.body %></p>
-                
-                <p><i class="fas fa-heart"></i><%= item.favorites.count %></p>
-                <p><i class="fas fa-comment-alt"></i><%= item.post_comments.count %></p>
-              </div>
+<div class="container-fluid mt-50">
+  <div class="row">
+    <% @items.each do |item| %>
+      <div class="col-md-3">
+        <div class="product-card mb-30">
+          <div class="product-badge bg-secondary border-default text-body">
+            <% if item.tags.blank? %>
+              <span><i class="fas fa-tag" style="color: black;" ></i>none</span>
+            <% else %>
+              <span><i class="fas fa-tag" style="color: black;"></i><%= item.tags.first.name %></span>
             <% end %>
           </div>
+          <a class="product-thumb" data-abc="true">
+            <%= image_tag item.image %>
+          </a>
+          <div class="product-card-body">
+            <div class="product-category"></div>
+            <h3 class="product-title">
+              <%= item.name %>
+            </h3>
+            <h4><%= item.body %></h4>
+          </div>
+          <div class="product-button-group">
+            <a class="product-button btn-wishlist" data-abc="true">
+              <i class="fas fa-heart " aria-hidden="true" style="color: red; font-size:1.4em;"></i>
+              <span><%= item.favorites.count %></span>
+            </a>
+            <a class="product-button btn-compare" href="<%= item_path(item.id) %>" data-abc="true">
+              <i class="fas fa-comment-alt"  aria-hidden="true" style="color: blue; font-size:1.4em;"></i>
+              <span><%= item.post_comments.count %></span>
+            </a>
+            <%= link_to item_path(item.id), class: "product-button", data: { abc: "true" } do %>
+              <i class="fa fa-angle-right"></i>
+              <span>Details</span>
+            <% end %>
+            </a>
+          </div>
         </div>
-      <% end %>
-
       </div>
-    </div>
-  <div class="mt-4 d-flex justify-content-center">
-     <%= paginate @items %>
+    <% end %>
   </div>
-  
+</div>
+<div class="mt-4 d-flex justify-content-center">
+   <%= paginate @items %>
+</div>
 
- 
- 
-    　　
-
-
-
-<script>
-// image_tagのクラス名と合わせる
-const images = document.getElementsByClassName("images")
-for (const image of images) {
-  // image_tagのname属性を左辺に入れる
-  document.getElementById(image.name).href = image.src
+<style>
+  body{
+    background-color: #eee;
 }
-</script>
+
+.mt-50{
+    margin-top:50px;
+}
+
+.product-card {
+    display: block;
+    position: relative;
+    width: 100%;
+    border: 1px solid #e5e5e5;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+.mb-30 {
+    margin-bottom: 30px !important;
+}
+
+.product-badge {
+    position: absolute;
+    height: 24px;
+    padding: 0 14px;
+    border-radius: 3px;
+    color: #fff !important;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: .025em;
+    line-height: 24px;
+    white-space: nowrap;
+    top: 12px;
+    left: 12px;
+}
+
+
+.bg-secondary {
+    background-color: #dc3545  !important;
+}
+
+.bg-success {
+    background-color: #21bd4a  !important;
+}
+
+
+
+
+.product-thumb>img {
+    display: block;
+    width: 100%;
+        height: 300px;
+            padding: 14px;
+}
+
+
+.product-category {
+    width: 100%;
+    margin-bottom: 6px;
+    font-size: 12px;
+}
+
+.product-card-body {
+    padding: 18px;
+    padding-top: 15px;
+    text-align: center;
+}
+
+.product-category>a {
+    transition: color .2s;
+    color: #999;
+    text-decoration: none;
+}
+
+
+.product-title {
+    margin-bottom: 18px;
+    font-size: 16px;
+    font-weight: normal;
+}
+
+.product-title>a {
+    transition: color .3s;
+    color: #232323;
+    text-decoration: none;
+}
+
+.product-price {
+    display: inline-block;
+    margin-bottom: 10px;
+    padding: 9px 15px;
+    border-radius: 4px;
+    background-color: #3ba9fc;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: normal;
+    text-align: center;
+}
+
+
+.product-button-group {
+    display: table;
+    width: 100%;
+    border-top: 1px solid #e5e5e5;
+    table-layout: fixed;
+}
+
+..product-button-group a:hover{
+      color: #3ba9fc;
+}
+
+
+
+
+.product-button:first-child {
+    border-bottom-left-radius: 5px;
+}
+
+
+.product-button {
+    display: table-cell;
+    position: relative;
+    height: 62px;
+    padding: 10px;
+    transition: background-color .3s;
+    border: 0;
+    border-right: 1px solid #e5e5e5;
+    background: none;
+    color: #505050;
+    overflow: hidden;
+    vertical-align: middle;
+    text-align: center;
+    text-decoration: none;
+}
+
+.product-button:hover>span {
+    -webkit-transform: translateY(0);
+    -ms-transform: translateY(0);
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.product-button>span {
+    display: block;
+    position: absolute;
+    bottom: 9px;
+    left: 0;
+    width: 100%;
+    -webkit-transform: translateY(12px);
+    -ms-transform: translateY(12px);
+    transform: translateY(12px);
+    font-size: 12px;
+    white-space: nowrap;
+    opacity: 0;
+}
+
+.product-button>i, .product-button>span {
+    transition: all .3s; 
+}
+
+.product-button>i {
+    display: inline-block;
+    position: relative;
+    margin-top: 5px;
+    font-size: 18px;
+}
+
+.product-button:hover>i {
+    -webkit-transform: translateY(-10px);
+    -ms-transform: translateY(-10px);
+     transform: translateY(-10px);
+}
+</style>

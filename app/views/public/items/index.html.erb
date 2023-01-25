@@ -15,9 +15,9 @@
         <div class="product-card mb-30">
           <div class="product-badge bg-secondary border-default text-body">
             <% if item.tags.blank? %>
-              <span>none</span>
+              <span><i class="fas fa-tag" style="color: black;" ></i>none</span>
             <% else %>
-              <span><%= item.tags.first.name %></span>
+              <span><i class="fas fa-tag" style="color: black;"></i><%= item.tags.first.name %></span>
             <% end %>
           </div>
           <a class="product-thumb" data-abc="true">
