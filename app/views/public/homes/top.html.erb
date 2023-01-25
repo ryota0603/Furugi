@@ -4,38 +4,45 @@
 
 <div class ="container">
   <div class="row">
-    <div class="col-sm-2">
-    </div>
-  　<div class="col-sm-12 ">
-      <div calss ="d-flex justify-content-center" style="height:300px">
-        <div class="card" style="max-width: 500px;">
-          <img class="card-img img-fluid" src="/assets/home.png">
-            <div class="card-img-overlay">
-              <p class="h5 font-weight-light text-light pt-5">
-                <p class=>素敵な出会いが見つかる</p>
-                <p>一点モノに出会う確率が高くなる</p>
-              </p>
-            </div>
+    <div class="col-sm-12">
+      <div class="d-flx justify-content-center">
+        <div class="" style="position: relative; margin: 0 auto">
+          <div class="card-img img-fluid background-top">
           </div>
-        </div>
-        <h5><strong>NEW POST</strong></h5>
-        <div class="items">  
-          <% @item.first(12).each do |item| %>
-           <div class="card">
-             <%= link_to item_path(item.id) do %>
-              <div class="media media-2x1 gd-primary">
-                <%= image_tag item.image, class: "profile-image"%>
-              </div>
-              <div class="card-body">
-                <h5 class="card-title"><%= item.name %></h5>
-                <p class="card-text"><%= item.body %></p>
-              </div>
-              <% end %>
-            </div>
-          <% end %>
+          <div class="card-img-overlay">
+            <p class="h5 font-weight-light text-light pt-5">
+              <p class=>素敵な出会いが見つかる</p>
+              <p>一点モノに出会う確率が高くなる</p>
+            </p>
+          </div>
         </div>
       </div>
     </div>
+  </div>
+  <div class="row">
+    <div class="mb-2">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <h5><strong>NEW POST</strong></h5>
+      <div class="items">  
+        <% @item.first(12).each do |item| %>
+        <div class="card">
+          <%= link_to item_path(item.id) do %>
+            <div class="media media-2x1 gd-primary">
+              <%= image_tag item.image, class: "profile-image"%>
+            </div>
+            <div class="card-body">
+              <h5 class="card-title"><%= item.name %></h5>
+              <p class="card-text"><%= item.body %></p>
+            </div>
+          <% end %>
+        </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>
 
 
@@ -46,6 +53,12 @@
      background-color:#4A148C
  }
 
+.background-top {
+  background-image: url(<%=asset_path('home.png')%>);
+  background-size: cover;
+  background-position: center;
+  height: 20rem;
+}
 
  @media (max-width:991.98px) {
      .padding {
@@ -102,7 +115,6 @@
 .items {
     width: 90%;
     margin: 0px auto;
-    margin-top: 100px
 }
 
 .slick-slide {
