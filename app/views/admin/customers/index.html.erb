@@ -1,61 +1,102 @@
-<div class="offset-1">
-	<div class="ml-5">
-	  <div class="ml-5">
-	    <mark class="h4 bg-light ml-5 mb-5">会員一覧</mark>
-	  </div>
-	</div>
-</div>
-<h4>キーワード検索</h4>
-<div class="search-form">
-  <%= form_with url: admin_search_path, method: :get, local: true do |f| %>
-    <%= f.text_field :key_word %>
-    <%= f.hidden_field :name, :value => 'name' %>
-    <%= f.submit "検索" %>
-  <% end %>
-</div>
-<h4>email検索</h4>
-<div class="search-form">
-<%= form_with url: admin_search_path, method: :get, local: true do |f| %>
- <%= f.text_field :key_word %>
- <%= f.hidden_field :name, :value => 'email' %>
- <%= f.submit "検索" %>
-<% end %>
-</div>
-<div class='container px-5 px-sm-0 mt-3'>
-  <div class='row'>
-    <div class='col-md-2'></div>
-    <div class='col-md-8'>
-      <% @customers.each do |customer| %>
-          <ul class="max-w-md divide-y divide-gray-200 dark:divide-gray-700">
-             <li class="pb-3 sm:pb-4">
-                <div class="flex items-center space-x-4">
-                   <div class="flex-shrink-0">
-                      <%= image_tag customer.get_profile_image, size:'50x50' %>
-                   </div>
-                   <div class="flex-1 min-w-0">
-                      <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
-                        <%= link_to customer.name, admin_customer_path(customer.id) %>
-                      </p>
-                      <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-                        <%= customer.email %>
-                      </p>
-                   </div>
-                   <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                      <% if customer.is_deleted == false %>
-                          <td class='text-success'>有効</td>
-                        <% else %>
-                          <td class='text-secoundary'>退会</td>
-                      <% end %>
-                   </div>
-                </div>
-             </li>
-          </ul>
-      <% end %>
-      <div class="d-flex justify-content-center">
-        <%= paginate @customers %>
-      </div>
+<section class="jumbotron text-center">
+  <h2 class="jumbotron-heading">会員一覧</h2>
+  <div class="row">
+    <div class="col text-center">
+    <%= form_with url: admin_search_path, method: :get, local: true do |f| %>
+      <%= f.text_field :key_word, placeholder: "key_word" %>
+      <%= f.hidden_field :name, :value => 'name' %>
+      <%= f.submit "検索" %>
+    <% end %>
     </div>
-    <div class='col-md-2'></div>
+    <div class="col text-center">
+    <%= form_with url: admin_search_path, method: :get, local: true do |f| %>
+     <%= f.text_field :key_word, placeholder: "email"%>
+     <%= f.hidden_field :name, :value => 'email' %>
+     <%= f.submit "検索" %>
+    <% end %>
+    </div>
+  </div>
+</section>
+<div class="container mt-5">
+  <div class="table-responsive">
+    <% @customers.each do |customer| %>
+      <table class="table table-striped table-dark text-white table-hover">
+        <thead>
+          <tr>
+           <th colspan="2">user</th>
+           <th>email</th>
+           <th>status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+           <td colspan="2">
+             <div class="d-flex align-items-center">
+               <%= image_tag customer.get_profile_image,class: "rounded-circle", size:'50x50' %>
+               <span class="ml-2"><%= link_to customer.name, admin_customer_path(customer.id) %></span>
+             </div>  
+            </td>
+            <td>
+              <%= customer.email %>
+            </td>
+            <% if customer.is_deleted == false %>
+             <td class='text-success'>有効</td>
+            <% else %>
+             <td class='text-secoundary'>退会</td>
+            <% end %>
+          </tr>
+        </tbody>
+      </table>
+    <% end %>
   </div>
 </div>
+<div class="d-flex justify-content-center">
+ <%= paginate @customers %>
+</div>
 
+<style>
+ .external-link {
+  cursor: pointer;
+  color: blue;
+}
+
+body {
+  background: #eee;
+}
+
+input[type=checkbox] {
+  position: relative;
+  width: 15px;
+  height: 15px;
+  color: #000;
+  border: 1px solid grey;
+  border-radius: 4px;
+  appearance: none;
+  outline: 0;
+  cursor: pointer;
+  transition: background 175ms cubic-bezier(0.1, 0.1, 0.25, 1);
+  &: :before {
+ position: absolute;
+  content: '';
+  display: block;
+  top: 2px;
+  left: 7px;
+  width: 8px;
+  height: 16px;
+  border-style: solid;
+  border-color: #fff;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+  opacity: 0;
+  }
+&: checked {
+color: #fff;
+  border-color: green;
+  background: green;
+  &: :before {
+ opacity: 1;
+  }
+ ~ label: :before {
+ clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+} 
+</style>

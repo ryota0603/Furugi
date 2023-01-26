@@ -1,48 +1,134 @@
-<table class='table'>
-  <tr><%= image_tag customer.get_profile_image, size:'100x100' %></tr>
-  <tr>
-	  <th>name</th>
-	  <th><%= customer.name %></th>
-  </tr>
-  <tr>
-	  <th>introduction</th>
-	  <th><%= customer.introduction %></th>
-  </tr>
-  <tr>
-    <th>follows</th>
-    <th>
-      <%= link_to customer.followings.count,admin_customer_followings_path(customer) %>　
-    </th>
-  </tr>
-  <tr>
-    <th>followers</th>
-    <th>
-      <%= link_to customer.followers.count,admin_customer_followers_path(customer) %>
-    </th>
-  </tr>
-</table>
-<% if customer.name != "guestuser" %>
-  <div class='row'>
-    <%= link_to edit_customer_path(customer), class: "btn btn-outline-secondary btn-block" do %>
-      <i class="fas fa-user-cog"></i>
-    <% end %>
-  </div>
-<% end %>
-<div class='row'>
-  <% if customer.name != "admin" %>
-  <div id="follow_<%= customer.id %>">
-    <% if customer_signed_in? && customer != current_customer %>
-       <% if current_customer.following?(customer) %>
-        <%= link_to "フォロー外す", customer_relationships_path(customer.id), method: :delete,  class: 'btn btn-success' %>
-       <% else %>
-        <%= link_to "フォローする", customer_relationships_path(customer.id), method: :post,  class: 'btn btn-success' %>
-       <% end %>
-    <% end %> 
-  <% end %>
+<div class="container mt-4 mb-3 p-3 d-flex justify-content-center"> 
+ <div class="card p-5"> 
+  <div class=" image d-flex flex-column justify-content-center align-items-center"> 
+     <button class="btn btn-secondary"> 
+      <%= image_tag customer.get_profile_image,class: "rounded-circle", size:'100x100' %>
+     </button>
+     <span class="name mt-3"><%= customer.name %></span>
+     <span class="idd"><%= customer.id %></span>
+     <div class="d-flex flex-row justify-content-center align-items-center mt-3"> 
+      <span class="number text-center">
+       <%= link_to customer.followings.count,admin_customer_followings_path(customer) %>
+      <span class="follow">Follows</span>
+      </span>
+     </div> 
+      <div class="d-flex flex-row justify-content-center align-items-center mt-3"> 
+      <span class="number text-center">
+        <%= link_to customer.followers.count,admin_customer_followers_path(customer) %>
+      <span class="follow">Followers</span>
+      </span>
+      </div> 
+      <div class=" d-flex mt-2" style="margin-left: 0.3rem;">
+        <button class="btn1">
+        <% if customer.name != "guestuser" %>
+          <%= link_to "Edit Profile", edit_admin_customer_path(customer), class: "btn btn-outline-dark"%>
+        <% end %>
+        </button>
+      </div>
+      <div class="text mt-3">
+        <span><%= customer.introduction %></span> 
+      </div>
+      <div class="mt-2" style="margin-left: 1.1rem;">
+       <%= link_to "Like List",like_path, class: "btn btn-outline-dark" %>　
+      </div>
+     <div class=" px-2 rounded mt-4 date ">
+        <% if customer.name != "admin" %>
+        <div id="follow_<%= customer.id %>">
+          <% if customer_signed_in? && customer != current_customer %>
+            <% if customer != current_customer %>
+               <% if current_customer.following?(customer) %>
+                <%= link_to "unFollow", customer_relationships_path(customer.id), method: :delete,  class: 'btn btn-success' %>
+               <% else %>
+                <%= link_to "Follow", customer_relationships_path(customer.id), method: :post,  class: 'btn btn-success' %>
+               <% end %>
+            <% end %> 
+          <% end %> 
+         </div>
+        <% end %> 
+     </div>
+   </div> 
   </div>
 </div>
-<div class='row'>
-  <!--<#% if current_customer != customer %>-->
-  <!--  <#%= link_to 'Begin Chat', chat_path(customer.id) %>-->
-  <!--<#% end %> -->
-</div>
+
+<style>
+  * {
+    margin: 0;
+    padding: 0
+}
+
+body1 {
+    background-color: #000
+}
+
+.card {
+    width: 350px;
+    background-color: #efefef;
+    border: none;
+    cursor: pointer;
+    transition: all 0.5s;
+}
+
+.image img2 {
+    transition: all 0.5s
+}
+
+.card:hover .image img {
+    transform: scale(1.5)
+}
+
+
+.name {
+    font-size: 22px;
+    font-weight: bold
+}
+
+.idd {
+    font-size: 14px;
+    font-weight: 600
+}
+
+.idd1 {
+    font-size: 12px
+}
+
+.number {
+    font-size: 22px;
+    font-weight: bold
+}
+
+.follow {
+    font-size: 12px;
+    font-weight: 500;
+    color: #444444
+}
+
+.btn1 {
+    height: 40px;
+    width: auto;
+    margin: auto;
+    border: none;
+    background-color:;
+    color: #aeaeae;
+    font-size: 15px
+}
+
+.text span {
+    font-size: 13px;
+    color: #545454;
+    font-weight: 500
+}
+
+.icons i {
+    font-size: 19px
+}
+
+hr .new1 {
+    border: 1px solid
+}
+
+.join {
+    font-size: 14px;
+    color: #a0a0a0;
+    font-weight: bold
+}
+</style>

@@ -1,22 +1,22 @@
-<table class='table'>
-          <tbody id='wrapper'>
-             <% item.post_comments.each do |post_comment| %>
-             <tr>
-               <td>
-                 <%= link_to customer_path(post_comment.customer_id) do %>
-                    <%= image_tag post_comment.customer.get_profile_image, class: "rounded-circle", size:'50x50' %>
-                    <%= post_comment.customer.name %>
-                  <% end %>
-               </td>
-               <td>
-                 <%= post_comment.comment %>
-                     <% if admin_signed_in? || post_comment.customer == current_customer %>
-                       <%= link_to '削除', item_post_comment_path(item.id,post_comment.id), method: :delete, remote: true, data: { confirm: '削除しますか?' } %>
-                     <% end %>
-               </td>
-              </tr>
-              <% end %> 
-      		</tbody>
+<table class='table mt-5'bgcolor="#ffffff">
+  <tbody id='wrapper'>
+   <% item.post_comments.each do |post_comment| %>
+    <tr>
+     <td>
+       <%= link_to customer_path(post_comment.customer_id) do %>
+        <%= image_tag post_comment.customer.get_profile_image, class: "rounded-circle", size:'50x50' %>
+        <%= post_comment.customer.name %>
+       <% end %>
+     </td>
+     <td>
+       <%= post_comment.comment %>
+       <% if admin_signed_in? || post_comment.customer == current_customer %>
+         <%= link_to '削除', item_post_comment_path(item.id,post_comment.id), method: :delete, remote: true, data: { confirm: '削除しますか?' } %>
+       <% end %>
+     </td>
+    </tr>
+   <% end %> 
+  </tbody>
 </table>
 
 

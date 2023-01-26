@@ -58,3 +58,57 @@
     </div>
   </div>
 </div>
+<div class='container px-5 px-sm-0'>
+  <div class='row'>
+    <div class='col-md-3'>
+      <%= render 'admin/customers/info', customer: @customer %>
+    </div>
+    <div class='col-md-8 offset-md-1'>
+      <table class='table table-hover table-inverse mt-5' bgcolor="#ffffff">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Name</th>
+            <th>Opinion</th>
+            <th>Tag</th>
+            <th colspan="3"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @items.each do |item| %>
+            <tr>
+              <td>
+                <a href="" id="a_image" target="_blank">
+                <%= image_tag item.image, size:"100x100", id:"image" %><br>
+                </a>
+              </td>
+              <td><%= link_to item.name,item %></td>
+              <td><%= item.body %></td>
+              <td>
+                <% if item.tags.blank? %>
+                 <span><i class="fas fa-tag"></i>none</span>
+                <% else %>
+                  <span><i class="fas fa-tag"></i><%= item.tags.first.name %></span>
+                <% end %>
+              </td>
+              <!--部分テンプレートにした箇所(部分的に更新したい箇所)-->
+                 <td id="favorite_buttons_<%= item.id %>">
+                   <%= render "public/favorites/favorites", item: item %>
+                  </td>
+                  <td><i class="fas fa-comment-alt"  aria-hidden="true" style="color: blue; font-size:1.3em;"></i><%= item.post_comments.count %></td>
+                 
+              </td>
+            </tr>
+          <% end %>
+      </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<div class="mt-4 d-flex justify-content-center">
+     <%= paginate @items %>
+</div>
+<script>
+const image = document.getElementById("image")
+document.getElementById("a_image").href = image.src
+</script>

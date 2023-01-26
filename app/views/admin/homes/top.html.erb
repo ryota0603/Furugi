@@ -4,41 +4,43 @@
 
 <div class ="container">
   <div class="row">
-    <div class="col-sm-2">
-    </div>
-  　<div class="col-sm-10 ">
-      <div calss ="d-flex align-items-center" style="height:300px">
-        <div class="card" style="max-width: 500px;">
-          <img class="card-img img-fluid" src="/assets/home.png">
-            <div class="card-img-overlay">
-              <p class="h5 font-weight-light text-light pt-5">
-                
-              </p>
-            </div>
+    <div class="col-sm-12">
+      <div class="d-flx justify-content-center">
+        <div class="" style="position: relative; margin: 0 auto">
+          <div class="card-img img-fluid background-top">
+          </div>
+          <div class="card-img-overlay">
+            <p class="h5 font-weight-light text-light pt-5">
+            </p>
           </div>
         </div>
-        <h3><strong>新着投稿</strong></h3>
-        <div class="items">  
-          <% @item.first(12).each do |item| %>
-           <div class="card">
-             <%= link_to admin_item_path(item.id) do %>
-              <div class="media media-2x1 gd-primary">
-                <%= image_tag item.image, class: "profile-image"%>
-              </div>
-              <div class="card-body">
-                <h5 class="card-title"><%= item.name %></h5>
-                <p class="card-text"><%= item.body %></p>
-              </div>
-              <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="mb-2">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <h5 style="color: #ffff"><strong>NEW POST</strong></h5>
+      <div class="items">  
+        <% @item.first(12).each do |item| %>
+        <div class="card">
+          <%= link_to admin_item_path(item.id) do %>
+            <div class="media media-2x1 gd-primary">
+              <%= image_tag item.image, class: "profile-image"%>
+            </div>
+            <div class="card-body">
+              <h5 class="card-title"><%= item.name %></h5>
+              <p class="card-text"><%= item.body %></p>
             </div>
           <% end %>
         </div>
-          <div class="text-md-right pd-3">
-            
-            <%= link_to "全ての投稿を見る >", admin_items_path %>
-          </div>
+        <% end %>
       </div>
     </div>
+  </div>
 </div>
 
 
@@ -49,6 +51,13 @@
      background-color:#4A148C
  }
 
+.background-top {
+  background-image: url(<%=asset_path('homecover.png')%>);
+  background-size: cover;
+  /*background-position: center;*/
+  height: 20rem;
+  margin-top: 10px;
+}
 
  @media (max-width:991.98px) {
      .padding {
@@ -105,7 +114,6 @@
 .items {
     width: 90%;
     margin: 0px auto;
-    margin-top: 100px
 }
 
 .slick-slide {
@@ -211,3 +219,6 @@ $(document).ready(function(){
  });
 });
 </script>
+
+
+
