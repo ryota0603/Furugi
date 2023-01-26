@@ -4,7 +4,8 @@
       <div>
        <%= form_with model: @customer, url: customer_session_path do |f| %>
         <div class="text-center mb-4">
-          <img class="mb-4" src="/assets/logo.png" alt="" width="130" height="80">
+          <!--<img class="mb-4" src="/assets/logo.png" alt="" width="130" height="80">-->
+          <%= image_tag asset_path("logo.png"), size: "130x80" %>
           <h1 class="h3 mt-4 mb-3 font-weight-normal"><strong>Log In</strong></h1>
         </div>
         <div class="form-label-group">
