@@ -6,7 +6,6 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= include_gon %>
-
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <link rel="stylesheet" href="assets/public/customers.scss">
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
@@ -16,13 +15,9 @@
 
   <body>
     <%= render "layouts/header" %>
-    
     <%= yield %>
-    
   </body>
 </html>
-
-
 
 <style>
   body{

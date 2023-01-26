@@ -35,7 +35,7 @@
       </script>
     </div>
     <div class='col-md-8 offset-md-1'>
-  		<table class='table'>
+  		<table class='table mt-5' bgcolor="#ffffff">
   		  <thead>
           <tr>
             <th></th>
@@ -71,24 +71,19 @@
       </table>
       
       <div class='col-md-8 offset-md-1'>
-        <h4>コメント</h4>
+        <div class="row">
+        <h4 class="mr-5">Comment</h4>
+        <div class ="comment">
+          <%= render 'public/post_comments/comment', item: @item  %>
+        </div>
+        </div>
         <diV id="index">
           <%= render 'public/post_comments/post_comments', item: @item %>
         </diV>
-         
-      		<div>
-        		<%= render 'public/post_comments/form', item: @item, post_comment: @post_comment %>
-        	</div>
-          <div class ="comment">
-            <%= render 'public/post_comments/comment', item: @item  %>
-          </div>
+        <div>
+        	<%= render 'public/post_comments/form', item: @item, post_comment: @post_comment %>
+        </div>
       </div>
-      
-- 
-
-
-
-  
     </div>
   </div>
 </div>
@@ -96,5 +91,4 @@
 <script>
 const image = document.getElementById("image")
 document.getElementById("a_image").href = image.src
-
 </script>

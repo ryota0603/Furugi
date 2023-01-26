@@ -1,21 +1,24 @@
 <div class="container">
-  <div class="row">
+  <div class="">
     <div class="text-center py-5 px-3 col-md-6 mx-auto rounded">
-　　　<div class="text-center">
+　　　  <h4><strong>エリア検索</strong></h4>
         <%= form_with url: maps_path, method: :get, local: true do |f| %>
           <div class="main-search-input-wrap">
             <div class="main-search-input fl-wrap">
                <div class="main-search-input-item">
-                  <%= f.text_field :content %>
+                  <%= f.text_field :content,autofocus: true, autocomplete: "エリア検索" %>
                   <%= f.hidden_field :method, value: "area" %>
                 </div>
                 <%= f.submit '検索',  class: "main-search-button" %>
-                 
             </div>
           </div>
         <% end %>
+    </div>
+    <div class="text-center py-5 px-3 col-md-6 mt-5 mx-auto rounded">
+        <h4><strong>キーワード検索</strong></h4>
        <%= form_with url: search_path, method: :get, local: true do |f| %>
           <div class="main-search-input-wrap">
+      
             <div class="main-search-input fl-wrap">
                <div class="main-search-input-item">
                   <%= f.text_field :content %>
@@ -25,7 +28,6 @@
             </div>
           </div>
        <% end %>
-      </div>
     </div>
   </div>
 </div>
@@ -37,7 +39,7 @@
     background: #fff;
     padding: 0 120px 0 0;
     border-radius: 1px;
-    margin-top: 200px;
+    margin-top: 10px;
     box-shadow: 0px 0px 0px 6px rgba(255,255,255,0.3);
 }
 
@@ -61,7 +63,6 @@
 .main-search-input-item {
     float: left;
     width: 100%;
-
     border-right: 1px solid #eee;
     height: 50px;
     position: relative;

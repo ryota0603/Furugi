@@ -5,30 +5,17 @@
        <%= form_with model: @customer, url: customer_session_path do |f| %>
         <div class="text-center mb-4">
           <img class="mb-4" src="/assets/logo.png" alt="" width="130" height="80">
-          <!-- <h1 class="h3 mb-3 font-weight-normal">Floating labels</h1> -->
           <h1 class="h3 mt-4 mb-3 font-weight-normal"><strong>Log In</strong></h1>
-          <!-- <p>Build form controls with floating labels via the <code>:placeholder-shown</code> pseudo-element. <a href="https://caniuse.com/#feat=css-placeholder-shown">Works in latest Chrome, Safari, and Firefox.</a></p> -->
-          
         </div>
-      
         <div class="form-label-group">
           <%= f.email_field :email, class: "form-control", autofocus: true, autocomplete: "email" %>
-        
-          <!-- <label for="inputEmail">Email address</label> -->
           <%= f.label :Email %>
         </div>
-      
         <div class="form-label-group">
           <%= f.password_field :password, class: "form-control", autocomplete: "current-password" %>
-          <!-- <label for="inputPassword">Password</label> -->
-           <%= f.label :Password %>
+          <%= f.label :Password %>
         </div>
-      
-        
-        <!-- <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button> -->
         <%= f.submit "Log In", class: "btn btn-lg btn-primary btn-block" %>
-      
-        <p class="mt-5 mb-3 text-muted text-center">© Furugi</p>
        <% end %>
       </div>
       <div class="text-center">
