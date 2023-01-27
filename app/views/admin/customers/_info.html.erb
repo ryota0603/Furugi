@@ -6,6 +6,7 @@
      </button>
      <span class="name mt-3"><%= customer.name %></span>
      <span class="idd"><%= customer.id %></span>
+     <span class="idd"><%= customer.email %></span>
      <div class="d-flex flex-row justify-content-center align-items-center mt-3"> 
       <span class="number text-center">
        <%= link_to customer.followings.count,admin_customer_followings_path(customer) %>

@@ -5,59 +5,6 @@
 	  </div>
 	</div>
 </div>
-<div class='container'>
-  <div class='row mt-4 ml-4'>
-    <div class="col-md-12 ml-3">
-      <table class='table table-borderless'>
-        <tbody>
-          <tr>
-            <td style="width: 20%">会員ID</td>
-            <td><%= @customer.id %></td>
-          </tr>
-          <tr><%= image_tag @customer.get_profile_image, size:'100x100' %></tr>
-          <tr>
-            <td style="width: 20%">name</td>
-            <td><%= @customer.name %></td>
-          </tr>
-          <tr>
-            <td style="width: 20%">introduction</td>
-            <td><%= @customer.introduction %></td>
-          </tr>
-          <tr>
-            <td style="width: 20%">メールアドレス</td>
-            <td><%= @customer.email %></td>
-          </tr>
-          <tr>
-          <tr>
-            <th>follows</th>
-            <th>
-              <%= link_to  @customer.followings.count,admin_customer_followings_path(@customer) %>　
-            </th>
-          </tr>
-          <tr>
-            <th>followers</th>
-            <th>
-              <%= link_to  @customer.followers.count,admin_customer_followers_path(@customer) %>
-            </th>
-          </tr>
-            <td style="width: 20%">会員ステータス</td>
-            <% if @customer.is_deleted == false %>
-              <td class='text-success'>有効</td>
-            <% else %>
-              <td class='text-secoundary'>退会</td>
-            <% end %>
-          </tr>
-          <tr>
-            <td></td>
-            <td style="width: 20%"><%= link_to "編集する", edit_admin_customer_path(@customer), class: "btn btn-success" %></td>
-          </tr>
-        </tbody>
-      </table>
-      <div>
-    </div>
-    </div>
-  </div>
-</div>
 <div class='container px-5 px-sm-0'>
   <div class='row'>
     <div class='col-md-3'>
@@ -91,9 +38,9 @@
                   <span><i class="fas fa-tag"></i><%= item.tags.first.name %></span>
                 <% end %>
               </td>
-              <!--部分テンプレートにした箇所(部分的に更新したい箇所)-->
+              部分テンプレートにした箇所(部分的に更新したい箇所)
                  <td id="favorite_buttons_<%= item.id %>">
-                   <%= render "public/favorites/favorites", item: item %>
+                   <%= render "admin/favorites/favorites", item: item %>
                   </td>
                   <td><i class="fas fa-comment-alt"  aria-hidden="true" style="color: blue; font-size:1.3em;"></i><%= item.post_comments.count %></td>
                  

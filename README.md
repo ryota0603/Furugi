@@ -29,6 +29,7 @@
 ## 設計書
 <...>
 
+
 ## 開発環境
 - OS：Linux(CentOS)
 - 言語：HTML,CSS,JavaScript,Ruby,SQL
@@ -36,5 +37,7 @@
 - JSライブラリ：jQuery
 - IDE：Cloud9
 
-## 使用素材
-- 使用検討中です
+## 使用技術
+- Google map API
+- Geo cooder API
+- 非同期通信いいね、コメント機能
