@@ -25,10 +25,10 @@ class Public::ItemsController < ApplicationController
   end
   
   def show
-    if current_customer
+    if customer_signed_in?
       @item = Item.find(params[:id])
       gon.item = @item # 追記
-      @customer = current_customer
+      # @customer = current_customer
       @post_comment = PostComment.new
     else
        redirect_to new_customer_registration_path

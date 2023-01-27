@@ -1,8 +1,10 @@
 <div class="container mt-4 mb-3 p-3 d-flex justify-content-center"> 
  <div class="card p-5"> 
   <div class=" image d-flex flex-column justify-content-center align-items-center"> 
-     <button class="btn btn-secondary"> 
-      <%= image_tag customer.get_profile_image,class: "rounded-circle", size:'100x100' %>
+     <button class="btn btn-secondary">
+      <%= link_to customer_path(customer.id) do %>
+       <%= image_tag customer.get_profile_image,class: "rounded-circle", size:'100x100' %>
+      <% end %>
      </button>
      <span class="name mt-3"><%= customer.name %></span>
      <span class="idd"><%= customer.id %></span>
