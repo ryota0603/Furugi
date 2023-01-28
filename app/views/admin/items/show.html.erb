@@ -3,6 +3,7 @@
     <div class='col-md-3'>
       <h2>User info</h2>
       <%= render 'admin/customers/info', customer: @item.customer %>
+      <div><strong><%= @item.address %></strong></div>
       <div id ="map"></div>
       <style>#map {height: 400px; width: 400px;}</style>
       <script>
@@ -35,16 +36,31 @@
       </script>
     </div>
     <div class='col-md-8 offset-md-1'>
-  		<h2>投稿詳細</h2>
-  		<table class='table'>
+  		<table class='table'  bgcolor="#ffffff">
+  		  <thead>
+          <tr>
+            <th></th>
+            <th>Name</th>
+            <th>Opinion</th>
+            <th>Tag</th>
+            <th colspan="3"></th>
+          </tr>
+        </thead>
   		  <tr>
           <td>
-            <%= link_to(@item.customer) do %>
-             <%= image_tag @item.customer.get_profile_image, size:"100x100" %><br>
-            <% end %>
+            <a href="" id="a_image" target="_blank">
+             <%= image_tag @item.image, size:"100x100", id:"image" %><br>
+            </a>
           </td>
           <td><%= @item.name %></td>
           <td><%= @item.body %></td>
+          <td>
+           <% if @item.tags.blank? %>
+              <span><i class="fas fa-tag"></i>none</span>
+            <% else %>
+              <span><i class="fas fa-tag"></i><%= @item.tags.first.name %></span>
+            <% end %>
+          </td>  
           <% if admin_signed_in? || @item.customer == current_customer %>
             <td><%= link_to 'Destroy', @item, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%></td>
           <% end %>
@@ -54,22 +70,14 @@
         </tr>
       </table>
       <div class='col-md-8 offset-md-1'>
-         <h4>コメント</h4>
-         <div id="index">
+        <h4>Comment</h4>
+        <div id="index">
             <%= render 'admin/post_comments/post_comments',item: @item %>
-      	 </div>  
-      		
-          <div class ="comment">
+      	</div>
+        <div class ="comment">
             <%= render 'admin/post_comments/comment', item: @item  %>
-          </div>
-        　
+        </div>
       </div>
-      
-- 
-
-
-
-  
     </div>
   </div>
 </div>

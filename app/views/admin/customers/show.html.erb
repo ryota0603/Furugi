@@ -29,7 +29,7 @@
                 <%= image_tag item.image, size:"100x100", id:"image" %><br>
                 </a>
               </td>
-              <td><%= link_to item.name,item %></td>
+              <td><%= link_to item.name,admin_item_path(item.id) %></td>
               <td><%= item.body %></td>
               <td>
                 <% if item.tags.blank? %>
@@ -38,7 +38,7 @@
                   <span><i class="fas fa-tag"></i><%= item.tags.first.name %></span>
                 <% end %>
               </td>
-              部分テンプレートにした箇所(部分的に更新したい箇所)
+              <!--部分テンプレートにした箇所(部分的に更新したい箇所)-->
                  <td id="favorite_buttons_<%= item.id %>">
                    <%= render "admin/favorites/favorites", item: item %>
                   </td>

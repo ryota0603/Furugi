@@ -4,14 +4,11 @@ class Admin::CustomersController < ApplicationController
   
   def show
     @customer = Customer.find(params[:id])
-    @items = @customer.items
+    @items = @customer.items.page(params[:page]).per(6)
   end
+  
   def index
     @customers = Customer.page(params[:page]).per(10)
-  end
-
-  def show
-    @customer = Customer.find(params[:id])
   end
 
   def edit
