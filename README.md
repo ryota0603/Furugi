@@ -27,7 +27,8 @@
 - 服を売りたい時
 
 ## 設計書
-<...>
+<..https://docs.google.com/presentation/d/1i8XIpO8bDWECw0-zcvGnZ1PAwZdB3ZHo0CaS6A9HNpg/edit?usp=sharing.>
+<..https://docs.google.com/presentation/d/1EUEu0DWorAYJ0o3iELxwjvtk9wfeHCsp7jtfVb5ZkYw/edit?usp=sharing.>
 
 
 ## 開発環境
@@ -42,4 +43,3 @@
 - Geo cooder API
 - 非同期通信いいね、コメント機能
 
-## 使用素材
