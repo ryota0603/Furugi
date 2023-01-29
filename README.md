@@ -31,6 +31,9 @@
 <..https://docs.google.com/presentation/d/1EUEu0DWorAYJ0o3iELxwjvtk9wfeHCsp7jtfVb5ZkYw/edit?usp=sharing.>
 <..https://docs.google.com/spreadsheets/d/13Us6EE_WWtLg0SkBuIOIcwkUXxvStnkR5Tsf6LKc-uA/edit?usp=sharing.>
 
+## テスト仕様書
+<..https://docs.google.com/spreadsheets/d/1PPuHtQus_iQh4Ks7tYkIF0V5EmWd32Re/edit?usp=sharing&ouid=113344231713892783531&rtpof=true&sd=true>
+
 ## 開発環境
 - OS：Linux(CentOS)
 - 言語：HTML,CSS,JavaScript,Ruby,SQL
