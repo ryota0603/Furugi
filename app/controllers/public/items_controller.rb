@@ -1,5 +1,6 @@
 class Public::ItemsController < ApplicationController
-  before_action :authenticate_customer!,except: [:index]
+  before_action :authenticate_customer!
+  before_action :ensure_correct_customer, only: [:edit,:update,:destroy]
   def new
     @item = Item.new
   end
@@ -62,6 +63,13 @@ class Public::ItemsController < ApplicationController
   
   def item_params
       params.require(:item).permit(:image, :name, :shopname, :body, :address)
+  end
+  
+  def ensure_correct_customer
+    @customer = Customer.find(params[:id])
+    unless @customer == current_customer
+      redirect_to items_path
+    end
   end
 
 end
