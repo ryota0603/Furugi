@@ -51,4 +51,8 @@ class Item < ApplicationRecord
       Item.where('name LIKE ? or shopname LIKE ?','%'+content+'%','%'+content+'%')
     end
   end
+   # 前方一致検索
+  # scope :by_item_like, lambda { |name|
+  #   where('name LIKE :value', { value: "#{sanitize_sql_like(name)}%"})
+  # }
 end

@@ -58,12 +58,23 @@ class Public::ItemsController < ApplicationController
     redirect_to items_path
     
   end
-
+  
+  # def autocomplete_name
+  #   # params[:company]の値でUser.companyを前方一致検索、company列だけ取り出し、nilと空文字を取り除いた配列
+  #   names = Item.by_name_like(autocomplete_params[:name]).pluck(:name).reject(&:blank?)
+  #   render json: names
+  #   # レスポンスの例: ["てすと１会社","てすと２会社","てすと３会社"]
+  # end
+  
   private
   
   def item_params
       params.require(:item).permit(:image, :name, :shopname, :body, :address)
   end
+  
+  # def autocomplete_params
+  #     params.permit(:name)
+  # end
   
   def ensure_correct_customer
     @customer = Customer.find(params[:id])

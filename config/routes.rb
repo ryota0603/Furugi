@@ -52,6 +52,7 @@ namespace :admin do
     resources :items, only: [:index, :new, :show, :edit, :update, :create, :destroy] do
      resource :favorites
      resources :post_comments, only: [:create, :destroy]
+     # get '/autocomplete_name/:name', on: :collection, action: :autocomplete_name
     end
     #フォロー機能、フォロワー機能
     resources :customers, only: [:show, :edit, :update] do
