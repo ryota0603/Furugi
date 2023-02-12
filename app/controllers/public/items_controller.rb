@@ -65,7 +65,7 @@ class Public::ItemsController < ApplicationController
   def item_params
       params.require(:item).permit(:image, :name, :shopname, :body, :address)
   end
-  
+  # loginしているか判断する記述
   def ensure_correct_customer
     @customer = Customer.find(params[:id])
     unless @customer == current_customer
