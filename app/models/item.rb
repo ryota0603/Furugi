@@ -44,6 +44,7 @@ class Item < ApplicationRecord
     favorites.exists?(customer_id: customer.id)
   end
   # 検索機能の記述　条件分岐、大元はコントローラーに記述
+  # are と　key_word で分ける
   def self.search_for(content,method)
     if method == 'area'
       Item.where("address LIKE ?",'%'+content+'%')
