@@ -29,7 +29,6 @@ class Public::ItemsController < ApplicationController
     if customer_signed_in?
       @item = Item.find(params[:id])
       gon.item = @item # 追記
-      # @customer = current_customer
       @post_comment = PostComment.new
     else
        redirect_to new_customer_registration_path
@@ -44,7 +43,6 @@ class Public::ItemsController < ApplicationController
   def update
     @item = Item.find(params[:id])
     if @item.update(item_params)
-       flash[:notice]
        redirect_to item_path(@item.id)
     else
        render :edit
