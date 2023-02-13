@@ -16,6 +16,8 @@ class Public::FavoritesController < ApplicationController
   # いいね一覧の記述
   def like
    @customer = current_customer
+   #whereでいいねしている会員のイイねの商品を全て取ってくる。
+   #plackでitem_id限定でdbから取り出す
    favorites = Favorite.where(customer_id: @customer.id).pluck(:item_id)
    @items = Item.where(id: favorites).page(params[:page]).per(15)
   end

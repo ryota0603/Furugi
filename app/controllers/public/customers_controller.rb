@@ -1,6 +1,7 @@
 class Public::CustomersController < ApplicationController
   before_action :authenticate_customer!
   before_action :ensure_correct_customer, only: [:edit,:update]
+  #guest_userには編集させなくさせる。
   before_action :no_guest_user, only: [:edit]
 
   def show
@@ -15,7 +16,6 @@ class Public::CustomersController < ApplicationController
   def update
     @customer = Customer.find(params[:id])
     if @customer.update(customer_params)
-      flash[:success] = "You have edited user data successfully."
       redirect_to customer_path(@customer)
     else
       render 'edit'
@@ -47,6 +47,7 @@ class Public::CustomersController < ApplicationController
       redirect_to customer_path(current_customer)
     end
   end
+  #guest_userが使える機能を制限する為にuserを判断する記述
   def no_guest_user
     @customer = Customer.find(params[:id])
     if @customer.guest?
